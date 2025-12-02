@@ -16,12 +16,12 @@
     <div class="relative max-w-7xl mx-auto px-4 py-12">
         <div class="text-center text-white">
             <div class="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 mb-6">
-                <span class="bg-gabon-yellow text-gray-900 px-3 py-1 rounded-full text-sm font-bold mr-3">
+                <span class="bg-violet-400 text-gray-900 px-3 py-1 rounded-full text-sm font-bold mr-3">
                     {{ ucfirst($property->type) }}
                 </span>
                 <span class="text-sm">{{ $property->status === 'for_sale' ? 'À vendre' : ($property->status === 'for_rent' ? 'À louer' : 'Hôtel') }}</span>
                 @if($property->featured)
-                    <span class="ml-3 bg-gabon-blue text-white px-3 py-1 rounded-full text-sm font-bold">
+                    <span class="ml-3 bg-violet-600 text-white px-3 py-1 rounded-full text-sm font-bold">
                         <i class="fas fa-star mr-1"></i>Vedette
                     </span>
                 @endif

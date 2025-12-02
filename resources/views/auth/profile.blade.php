@@ -123,7 +123,7 @@
             <div class="flex items-center space-x-6">
                 <div class="flex-shrink-0">
                     <div class="w-24 h-24 bg-white rounded-2xl flex items-center justify-center shadow-lg">
-                        <i class="fas fa-user-circle text-gabon-blue text-4xl"></i>
+                        <i class="fas fa-user-circle text-violet-600 text-4xl"></i>
                     </div>
                 </div>
                 <div>
@@ -177,14 +177,14 @@
                             <!-- Nom complet -->
                             <div class="input-group">
                                 <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
-                                    <i class="fas fa-user mr-2 text-gabon-blue"></i>
+                                    <i class="fas fa-user mr-2 text-violet-600"></i>
                                     Nom complet
                                 </label>
                                 <input type="text" 
                                        name="name" 
                                        id="name" 
                                        value="{{ old('name', auth()->user()->name) }}"
-                                       class="block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gabon-blue focus:border-gabon-blue transition-all duration-300">
+                                       class="block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-violet-600 transition-all duration-300">
                                 @error('name')
                                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
@@ -193,14 +193,14 @@
                             <!-- Email -->
                             <div class="input-group">
                                 <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-                                    <i class="fas fa-envelope mr-2 text-gabon-blue"></i>
+                                    <i class="fas fa-envelope mr-2 text-violet-600"></i>
                                     Email
                                 </label>
                                 <input type="email" 
                                        name="email" 
                                        id="email" 
                                        value="{{ old('email', auth()->user()->email) }}"
-                                       class="block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gabon-blue focus:border-gabon-blue transition-all duration-300">
+                                       class="block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-violet-600 transition-all duration-300">
                                 @error('email')
                                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
@@ -209,14 +209,14 @@
                             <!-- Téléphone -->
                             <div class="input-group">
                                 <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">
-                                    <i class="fas fa-phone mr-2 text-gabon-blue"></i>
+                                    <i class="fas fa-phone mr-2 text-violet-600"></i>
                                     Téléphone
                                 </label>
                                 <input type="tel" 
                                        name="phone" 
                                        id="phone" 
                                        value="{{ old('phone', auth()->user()->phone) }}"
-                                       class="block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gabon-blue focus:border-gabon-blue transition-all duration-300">
+                                       class="block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-violet-600 transition-all duration-300">
                                 @error('phone')
                                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
@@ -226,7 +226,7 @@
                         <!-- Préférences de notification -->
                         <div class="space-y-4 border-t pt-6">
                             <h3 class="text-lg font-medium text-gray-900 mb-4">
-                                <i class="fas fa-bell mr-2 text-gabon-blue"></i>
+                                <i class="fas fa-bell mr-2 text-violet-600"></i>
                                 Préférences de notification
                             </h3>
                             
@@ -262,7 +262,7 @@
 
                         <div class="flex justify-end">
                             <button type="submit"
-                                    class="inline-flex items-center px-6 py-3 border border-transparent text-sm font-medium rounded-xl text-white bg-gabon-blue hover:bg-gabon-blue-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gabon-blue transition-all duration-300">
+                                    class="inline-flex items-center px-6 py-3 border border-transparent text-sm font-medium rounded-xl text-white bg-violet-600 hover:bg-violet-600-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-600 transition-all duration-300">
                                 <i class="fas fa-save mr-2"></i>
                                 Enregistrer les modifications
                             </button>
@@ -275,7 +275,7 @@
             <div class="lg:col-span-1">
                 <div class="form-card p-8">
                     <h2 class="text-xl font-semibold text-gray-900 mb-6">
-                        <i class="fas fa-shield-alt mr-2 text-gabon-blue"></i>
+                        <i class="fas fa-shield-alt mr-2 text-violet-600"></i>
                         Sécurité
                     </h2>
                     
@@ -292,7 +292,7 @@
                                 <input type="password" 
                                        name="current_password" 
                                        id="current_password"
-                                       class="block w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gabon-blue focus:border-gabon-blue transition-all duration-300"
+                                       class="block w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-violet-600 transition-all duration-300"
                                        placeholder="••••••••">
                                 <button type="button" 
                                         onclick="togglePasswordVisibility('current_password', 'current-password-icon')"
@@ -315,7 +315,7 @@
                                        name="password" 
                                        id="password"
                                        onkeyup="checkPasswordStrength(this.value)"
-                                       class="block w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gabon-blue focus:border-gabon-blue transition-all duration-300"
+                                       class="block w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-violet-600 transition-all duration-300"
                                        placeholder="••••••••">
                                 <button type="button" 
                                         onclick="togglePasswordVisibility('password', 'password-icon')"
@@ -343,7 +343,7 @@
                                 <input type="password" 
                                        name="password_confirmation" 
                                        id="password_confirmation"
-                                       class="block w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gabon-blue focus:border-gabon-blue transition-all duration-300"
+                                       class="block w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-violet-600 transition-all duration-300"
                                        placeholder="••••••••">
                                 <button type="button" 
                                         onclick="togglePasswordVisibility('password_confirmation', 'password-confirmation-icon')"
@@ -355,7 +355,7 @@
 
                         <div class="flex justify-end">
                             <button type="submit"
-                                    class="inline-flex items-center px-6 py-3 border border-transparent text-sm font-medium rounded-xl text-white bg-gabon-green hover:bg-gabon-green-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gabon-green transition-all duration-300">
+                                    class="inline-flex items-center px-6 py-3 border border-transparent text-sm font-medium rounded-xl text-white bg-violet-600 hover:bg-violet-600-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-600 transition-all duration-300">
                                 <i class="fas fa-key mr-2"></i>
                                 Changer le mot de passe
                             </button>

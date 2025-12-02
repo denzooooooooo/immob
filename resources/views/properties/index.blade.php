@@ -164,7 +164,7 @@
                 @if(request()->hasAny(['search', 'type', 'status', 'city', 'min_price', 'max_price', 'bedrooms']))
                     <p class="text-gray-600 mt-1">
                         Résultats filtrés - 
-                        <a href="{{ route('properties.index') }}" class="text-gabon-blue hover:text-gabon-green transition-colors duration-200">
+                        <a href="{{ route('properties.index') }}" class="text-violet-600 hover:text-violet-600 transition-colors duration-200">
                             Voir toutes les propriétés
                         </a>
                     </p>
@@ -173,7 +173,7 @@
             
             <div class="flex items-center space-x-4 mt-4 md:mt-0">
                 <span class="text-gray-600">Trier par:</span>
-                <select onchange="window.location.href=this.value" class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gabon-green focus:border-transparent">
+                <select onchange="window.location.href=this.value" class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-600 focus:border-transparent">
                     <option value="{{ request()->fullUrlWithQuery(['sort' => 'newest']) }}">Plus récent</option>
                     <option value="{{ request()->fullUrlWithQuery(['sort' => 'price_asc']) }}">Prix croissant</option>
                     <option value="{{ request()->fullUrlWithQuery(['sort' => 'price_desc']) }}">Prix décroissant</option>
@@ -302,7 +302,7 @@
                     Essayez de modifier vos critères de recherche ou explorez toutes nos propriétés.
                 </p>
                 <a href="{{ route('properties.index') }}" 
-                   class="inline-flex items-center bg-gradient-to-r from-gabon-green to-gabon-blue text-white font-bold py-3 px-6 rounded-lg hover:shadow-lg transition-all duration-200">
+                   class="inline-flex items-center bg-gradient-to-r from-violet-600 to-violet-600 text-white font-bold py-3 px-6 rounded-lg hover:shadow-lg transition-all duration-200">
                     <i class="fas fa-home mr-2"></i>
                     Voir toutes les propriétés
                 </a>

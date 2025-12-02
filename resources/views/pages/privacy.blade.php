@@ -11,14 +11,14 @@
             
             <div class="space-y-8">
                 <section>
-                    <h2 class="text-2xl font-bold text-gabon-blue mb-4">1. Introduction</h2>
+                    <h2 class="text-2xl font-bold text-violet-600 mb-4">1. Introduction</h2>
                     <p class="text-gray-600 leading-relaxed">
                         {{ $siteSettings['site_name'] ?? 'Monnkama' }} s'engage à protéger votre vie privée. Cette politique de confidentialité explique comment nous collectons, utilisons et protégeons vos données personnelles lorsque vous utilisez notre plateforme immobilière.
                     </p>
                 </section>
 
                 <section>
-                    <h2 class="text-2xl font-bold text-gabon-blue mb-4">2. Données collectées</h2>
+                    <h2 class="text-2xl font-bold text-violet-600 mb-4">2. Données collectées</h2>
                     <p class="text-gray-600 leading-relaxed mb-4">
                         Nous collectons les informations suivantes :
                     </p>
@@ -32,7 +32,7 @@
                 </section>
 
                 <section>
-                    <h2 class="text-2xl font-bold text-gabon-blue mb-4">3. Utilisation des données</h2>
+                    <h2 class="text-2xl font-bold text-violet-600 mb-4">3. Utilisation des données</h2>
                     <p class="text-gray-600 leading-relaxed mb-4">
                         Nous utilisons vos données pour :
                     </p>
@@ -46,7 +46,7 @@
                 </section>
 
                 <section>
-                    <h2 class="text-2xl font-bold text-gabon-blue mb-4">4. Cookies</h2>
+                    <h2 class="text-2xl font-bold text-violet-600 mb-4">4. Cookies</h2>
                     <p class="text-gray-600 leading-relaxed mb-4">
                         Nous utilisons des cookies pour :
                     </p>
@@ -62,7 +62,7 @@
                 </section>
 
                 <section>
-                    <h2 class="text-2xl font-bold text-gabon-blue mb-4">5. Partage des données</h2>
+                    <h2 class="text-2xl font-bold text-violet-600 mb-4">5. Partage des données</h2>
                     <p class="text-gray-600 leading-relaxed">
                         Nous ne vendons jamais vos données personnelles. Nous pouvons partager vos informations uniquement avec :
                     </p>
@@ -74,14 +74,14 @@
                 </section>
 
                 <section>
-                    <h2 class="text-2xl font-bold text-gabon-blue mb-4">6. Sécurité des données</h2>
+                    <h2 class="text-2xl font-bold text-violet-600 mb-4">6. Sécurité des données</h2>
                     <p class="text-gray-600 leading-relaxed">
                         Nous mettons en place des mesures de sécurité techniques et organisationnelles pour protéger vos données contre tout accès non autorisé, modification, divulgation ou destruction.
                     </p>
                 </section>
 
                 <section>
-                    <h2 class="text-2xl font-bold text-gabon-blue mb-4">7. Vos droits</h2>
+                    <h2 class="text-2xl font-bold text-violet-600 mb-4">7. Vos droits</h2>
                     <p class="text-gray-600 leading-relaxed mb-4">
                         Vous disposez des droits suivants :
                     </p>
@@ -95,14 +95,14 @@
                 </section>
 
                 <section>
-                    <h2 class="text-2xl font-bold text-gabon-blue mb-4">8. Conservation des données</h2>
+                    <h2 class="text-2xl font-bold text-violet-600 mb-4">8. Conservation des données</h2>
                     <p class="text-gray-600 leading-relaxed">
-                        Nous conservons vos données personnelles pendant la durée nécessaire aux finalités pour lesquelles elles ont été collectées, conformément à la législation gabonaise en vigueur.
+                        Nous conservons vos données personnelles pendant la durée nécessaire aux finalités pour lesquelles elles ont été collectées, conformément à la législation ivoirienne en vigueur.
                     </p>
                 </section>
 
                 <section>
-                    <h2 class="text-2xl font-bold text-gabon-blue mb-4">9. Contact</h2>
+                    <h2 class="text-2xl font-bold text-violet-600 mb-4">9. Contact</h2>
                     <p class="text-gray-600 leading-relaxed">
                         Pour toute question concernant cette politique de confidentialité ou pour exercer vos droits, contactez-nous :
                     </p>
@@ -110,13 +110,13 @@
                         <p class="text-gray-600">
                             <strong>Email :</strong> privacy@{{ strtolower($siteSettings['site_name'] ?? 'monnkama') }}.com<br>
                             <strong>Téléphone :</strong> +241 01 23 45 67<br>
-                            <strong>Adresse :</strong> Libreville, Gabon
+                            <strong>Adresse :</strong> Libreville, Côte d'Ivoire
                         </p>
                     </div>
                 </section>
 
                 <section>
-                    <h2 class="text-2xl font-bold text-gabon-blue mb-4">10. Modifications</h2>
+                    <h2 class="text-2xl font-bold text-violet-600 mb-4">10. Modifications</h2>
                     <p class="text-gray-600 leading-relaxed">
                         Cette politique de confidentialité peut être modifiée à tout moment. Les modifications seront publiées sur cette page avec la date de mise à jour.
                     </p>
@@ -128,10 +128,10 @@
 
             <div class="mt-12 pt-8 border-t border-gray-200">
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="{{ route('home') }}" class="bg-gabon-blue text-white px-6 py-3 rounded-lg hover:bg-gabon-green transition-colors duration-200 text-center">
+                    <a href="{{ route('home') }}" class="bg-violet-600 text-white px-6 py-3 rounded-lg hover:bg-violet-600 transition-colors duration-200 text-center">
                         Retour à l'accueil
                     </a>
-                    <a href="{{ route('contact') }}" class="border border-gabon-blue text-gabon-blue px-6 py-3 rounded-lg hover:bg-gabon-blue hover:text-white transition-colors duration-200 text-center">
+                    <a href="{{ route('contact') }}" class="border border-violet-600 text-violet-600 px-6 py-3 rounded-lg hover:bg-violet-600 hover:text-white transition-colors duration-200 text-center">
                         Nous contacter
                     </a>
                 </div>

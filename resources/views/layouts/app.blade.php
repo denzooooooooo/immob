@@ -28,27 +28,29 @@
             theme: {
                 extend: {
                     colors: {
-                        'gabon': {
-                            'green': '#009639',
-                            'yellow': '#FCD116',
-                            'blue': '#3A75C4',
-                            'green-light': '#00b344',
-                            'blue-light': '#4a85d4',
-                            'yellow-light': '#fcd726',
-                            'green-dark': '#007a2e',
-                            'blue-dark': '#2d5ba3'
+                        'violet': {
+                            '50': '#faf5ff',
+                            '100': '#f3e8ff',
+                            '200': '#e9d5ff',
+                            '300': '#d8b4fe',
+                            '400': '#c084fc',
+                            '500': '#a855f7',
+                            '600': '#9333ea',
+                            '700': '#7c3aed',
+                            '800': '#6b21a8',
+                            '900': '#581c87'
                         },
                         'primary': {
-                            50: '#f0fdf4',
-                            100: '#dcfce7',
-                            200: '#bbf7d0',
-                            300: '#86efac',
-                            400: '#4ade80',
-                            500: '#009639',
-                            600: '#007a2e',
-                            700: '#15803d',
-                            800: '#166534',
-                            900: '#14532d',
+                            50: '#faf5ff',
+                            100: '#f3e8ff',
+                            200: '#e9d5ff',
+                            300: '#d8b4fe',
+                            400: '#c084fc',
+                            500: '#a855f7',
+                            600: '#9333ea',
+                            700: '#7c3aed',
+                            800: '#6b21a8',
+                            900: '#581c87',
                         }
                     },
                     fontFamily: {
@@ -404,7 +406,7 @@
                 <!-- Logo et Description -->
                 <div class="col-span-1 md:col-span-2">
                     <div class="flex items-center space-x-2 mb-4">
-                        <div class="w-10 h-10 bg-gradient-to-r from-gabon-green to-gabon-blue rounded-lg flex items-center justify-center">
+                        <div class="w-10 h-10 bg-gradient-to-r from-violet-600 to-violet-800 rounded-lg flex items-center justify-center">
                             <i class="fas fa-home text-white text-xl"></i>
                         </div>
                         <span class="text-2xl font-bold text-white">
@@ -415,16 +417,16 @@
                         La première plateforme immobilière 100% ivoirienne. Nous connectons les propriétaires, agents et locataires pour faciliter vos transactions immobilières en Côte d'Ivoire.
                     </p>
                     <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-gabon-yellow transition-colors duration-200">
+                        <a href="#" class="text-gray-400 hover:text-violet-400 transition-colors duration-200">
                             <i class="fab fa-facebook-f text-xl"></i>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-gabon-yellow transition-colors duration-200">
+                        <a href="#" class="text-gray-400 hover:text-violet-400 transition-colors duration-200">
                             <i class="fab fa-twitter text-xl"></i>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-gabon-yellow transition-colors duration-200">
+                        <a href="#" class="text-gray-400 hover:text-violet-400 transition-colors duration-200">
                             <i class="fab fa-instagram text-xl"></i>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-gabon-yellow transition-colors duration-200">
+                        <a href="#" class="text-gray-400 hover:text-violet-400 transition-colors duration-200">
                             <i class="fab fa-linkedin-in text-xl"></i>
                         </a>
                     </div>
@@ -432,7 +434,7 @@
 
                 <!-- Liens Rapides -->
                 <div>
-                    <h3 class="text-lg font-semibold mb-4 text-gabon-yellow">Liens Rapides</h3>
+                    <h3 class="text-lg font-semibold mb-4 text-violet-400">Liens Rapides</h3>
                     <ul class="space-y-2">
                         <li><a href="{{ route('home') }}" class="text-gray-300 hover:text-white transition-colors duration-200">Accueil</a></li>
                         <li><a href="{{ route('properties.index') }}" class="text-gray-300 hover:text-white transition-colors duration-200">Propriétés</a></li>
@@ -444,20 +446,20 @@
 
                 <!-- Contact -->
                 <div>
-                    <h3 class="text-lg font-semibold mb-4 text-gabon-yellow">Contact</h3>
+                    <h3 class="text-lg font-semibold mb-4 text-violet-400">Contact</h3>
                     <ul class="space-y-2 text-gray-300">
                         <li class="flex items-center">
-                            <i class="fas fa-map-marker-alt mr-2 text-carre-purple"></i>
+                            <i class="fas fa-map-marker-alt mr-2 text-violet-400"></i>
                             Abidjan Marcory Biétry Boulevard de Marseille, Côte d'Ivoire
                         </li>
                         <li class="flex items-center">
-                        <i class="fas fa-phone mr-2 text-carre-purple"></i>
-                        <a href="tel:+2250101221515" class="hover:underline">+225 01 01 22 15 15</a>
-                    </li>
-                    <li class="flex items-center">
-                        <i class="fas fa-envelope mr-2 text-carre-purple"></i>
-                        <a href="mailto:infos@carrepremium.com" class="hover:underline">infos@carrepremium.com</a>
-                    </li>
+                            <i class="fas fa-phone mr-2 text-violet-400"></i>
+                            <a href="tel:+2250101221515" class="hover:underline">+225 01 01 22 15 15</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2 text-violet-400"></i>
+                            <a href="mailto:infos@carrepremium.com" class="hover:underline">infos@carrepremium.com</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -501,11 +503,177 @@
                 }
             });
         });
+
+        // Chatbot functionality
+        function chatbot() {
+            return {
+                isOpen: false,
+                messages: [
+                    {
+                        text: "Bonjour ! Je suis votre assistant immobilier. Comment puis-je vous aider aujourd'hui ?",
+                        isBot: true,
+                        time: new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
+                    }
+                ],
+                newMessage: '',
+                isTyping: false,
+
+                toggleChat() {
+                    this.isOpen = !this.isOpen;
+                },
+
+                sendMessage() {
+                    if (this.newMessage.trim() === '') return;
+
+                    // Add user message
+                    this.messages.push({
+                        text: this.newMessage,
+                        isBot: false,
+                        time: new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
+                    });
+
+                    const userMessage = this.newMessage.toLowerCase();
+                    this.newMessage = '';
+
+                    // Show typing indicator
+                    this.isTyping = true;
+
+                    // Simulate bot response
+                    setTimeout(() => {
+                        this.isTyping = false;
+                        const response = this.generateResponse(userMessage);
+                        this.messages.push({
+                            text: response,
+                            isBot: true,
+                            time: new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
+                        });
+
+                        // Scroll to bottom
+                        this.$nextTick(() => {
+                            const messagesContainer = this.$refs.messagesContainer;
+                            if (messagesContainer) {
+                                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                            }
+                        });
+                    }, 1000);
+
+                    // Scroll to bottom
+                    this.$nextTick(() => {
+                        const messagesContainer = this.$refs.messagesContainer;
+                        if (messagesContainer) {
+                            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                        }
+                    });
+                },
+
+                generateResponse(message) {
+                    // Réponses intelligentes et complètes
+                    
+                    // Salutations
+                    if (message.includes('bonjour') || message.includes('salut') || message.includes('hello') || message.includes('bonsoir') || message.includes('hey')) {
+                        return "Bonjour ! 👋 Je suis ravi de vous accueillir sur Carre Premium. Je peux vous aider à trouver votre propriété idéale, répondre à vos questions sur nos services, ou vous guider dans votre recherche. Comment puis-je vous assister aujourd'hui ?";
+                    }
+                    
+                    // Prix et budget
+                    if (message.includes('prix') || message.includes('coût') || message.includes('tarif') || message.includes('budget') || message.includes('combien')) {
+                        return "💰 Nos propriétés ont des prix variés selon le type et la localisation :\n\n• Appartements à Abidjan : 500 000 - 5 000 000 FCFA/mois\n• Maisons à Yamoussoukro : 300 000 - 3 000 000 FCFA/mois\n• Terrains : À partir de 10 000 000 FCFA\n• Commerces : Sur devis selon l'emplacement\n\nQuel est votre budget approximatif ? Je peux vous aider à trouver des options adaptées !";
+                    }
+                    
+                    // Recherche de propriétés
+                    if (message.includes('recherche') || message.includes('cherche') || message.includes('trouver') || message.includes('propriété') || message.includes('bien')) {
+                        return "🔍 Je peux vous aider à trouver la propriété parfaite ! Voici comment :\n\n1. Utilisez notre recherche avancée en haut de la page\n2. Filtrez par type (maison, appartement, terrain, commercial)\n3. Sélectionnez votre ville préférée\n4. Définissez votre budget\n\nQue recherchez-vous exactement ? Un appartement, une maison, un terrain ou un local commercial ?";
+                    }
+                    
+                    // Location
+                    if (message.includes('location') || message.includes('louer') || message.includes('locat')) {
+                        return "🏠 Excellente nouvelle ! Nous avons de nombreuses propriétés à louer :\n\n• Abidjan : Plus de 50 appartements et maisons\n• Yamoussoukro : Résidences modernes disponibles\n• Bouaké : Options variées pour tous budgets\n• San Pedro : Propriétés près de la mer\n\nDans quelle ville souhaitez-vous louer ? Je peux vous montrer les meilleures options !";
+                    }
+                    
+                    // Achat/Vente
+                    if (message.includes('achat') || message.includes('acheter') || message.includes('vendre') || message.includes('vente')) {
+                        return "🏡 Nous avons une large sélection de propriétés à vendre :\n\n• Maisons modernes avec jardin\n• Appartements neufs et rénovés\n• Terrains viabilisés\n• Locaux commerciaux stratégiques\n\nQuel type de bien vous intéresse ? Et dans quelle ville cherchez-vous ?";
+                    }
+                    
+                    // Villes
+                    if (message.includes('abidjan') || message.includes('yamoussoukro') || message.includes('bouaké') || message.includes('ville') || message.includes('quartier')) {
+                        return "🌍 Nous couvrons les principales villes de Côte d'Ivoire :\n\n• Abidjan : Cocody, Plateau, Marcory, Yopougon\n• Yamoussoukro : Centre-ville, zones résidentielles\n• Bouaké : Tous quartiers\n• San Pedro, Daloa, Korhogo et plus !\n\nQuelle ville vous intéresse ? Je peux vous montrer les propriétés disponibles !";
+                    }
+                    
+                    // Types de propriétés
+                    if (message.includes('appartement') || message.includes('studio') || message.includes('f2') || message.includes('f3') || message.includes('f4')) {
+                        return "🏢 Nos appartements disponibles :\n\n• Studios : Parfaits pour célibataires (250k - 500k FCFA/mois)\n• F2 : Idéal pour couples (400k - 800k FCFA/mois)\n• F3 : Pour petites familles (600k - 1.5M FCFA/mois)\n• F4+ : Grandes familles (1M - 3M FCFA/mois)\n\nTous avec commodités modernes ! Quel type vous intéresse ?";
+                    }
+                    
+                    if (message.includes('maison') || message.includes('villa') || message.includes('duplex')) {
+                        return "🏘️ Nos maisons et villas :\n\n• Maisons simples : 2-3 chambres avec jardin\n• Villas modernes : 4-6 chambres, piscine optionnelle\n• Duplex : Design contemporain, espaces optimisés\n• Résidences sécurisées : Gardiennage 24/7\n\nQue préférez-vous ? Je peux vous montrer nos meilleures offres !";
+                    }
+                    
+                    if (message.includes('terrain') || message.includes('parcelle') || message.includes('lot')) {
+                        return "🏗️ Terrains disponibles :\n\n• Terrains résidentiels viabilisés\n• Parcelles commerciales bien situées\n• Grands lots pour projets immobiliers\n• Titres fonciers sécurisés\n\nSuperficies de 200m² à plusieurs hectares. Quel projet avez-vous en tête ?";
+                    }
+                    
+                    if (message.includes('commercial') || message.includes('bureau') || message.includes('magasin') || message.includes('boutique')) {
+                        return "🏪 Locaux commerciaux disponibles :\n\n• Bureaux modernes : Climatisés, internet haut débit\n• Magasins : Zones commerciales stratégiques\n• Entrepôts : Grandes surfaces, accès facile\n• Restaurants/Cafés : Emplacements premium\n\nQuel type de local cherchez-vous ?";
+                    }
+                    
+                    // Contact et horaires
+                    if (message.includes('contact') || message.includes('appeler') || message.includes('téléphone') || message.includes('email') || message.includes('joindre')) {
+                        return "📞 Contactez-nous facilement :\n\n• Téléphone : +225 01 01 22 15 15\n• Email : infos@carrepremium.com\n• Adresse : Abidjan Marcory Biétry, Boulevard de Marseille\n\n⏰ Horaires : Lundi - Vendredi, 8h - 18h\nSamedi : 9h - 13h\n\nNotre équipe est à votre écoute !";
+                    }
+                    
+                    // Visite
+                    if (message.includes('visite') || message.includes('visiter') || message.includes('voir') || message.includes('rendez-vous')) {
+                        return "👁️ Organiser une visite :\n\n1. Choisissez la propriété qui vous intéresse\n2. Cliquez sur 'Contacter' sur la fiche\n3. Ou appelez-nous au +225 01 01 22 15 15\n\nNos agents sont disponibles pour des visites du lundi au samedi. Visites virtuelles également disponibles !";
+                    }
+                    
+                    // Documents et procédures
+                    if (message.includes('document') || message.includes('papier') || message.includes('dossier') || message.includes('procédure')) {
+                        return "📄 Documents nécessaires :\n\nPour la location :\n• Pièce d'identité\n• Justificatif de revenus\n• Caution (2-3 mois de loyer)\n\nPour l'achat :\n• Pièce d'identité\n• Justificatif de fonds\n• Acte notarié (nous vous assistons)\n\nNous vous accompagnons dans toutes les démarches !";
+                    }
+                    
+                    // Paiement
+                    if (message.includes('paiement') || message.includes('payer') || message.includes('mode de paiement') || message.includes('facilité')) {
+                        return "💳 Modes de paiement acceptés :\n\n• Virement bancaire\n• Mobile Money (Orange, MTN, Moov)\n• Espèces (à l'agence)\n• Chèque certifié\n\nFacilités de paiement disponibles pour l'achat. Contactez-nous pour plus d'infos !";
+                    }
+                    
+                    // Services
+                    if (message.includes('service') || message.includes('aide') || message.includes('assistance') || message.includes('accompagnement')) {
+                        return "🤝 Nos services :\n\n• Recherche personnalisée de propriétés\n• Visites guidées\n• Assistance juridique\n• Aide au financement\n• Gestion locative\n• Estimation gratuite\n\nNous vous accompagnons de A à Z dans votre projet immobilier !";
+                    }
+                    
+                    // Sécurité
+                    if (message.includes('sécurité') || message.includes('sécurisé') || message.includes('fiable') || message.includes('arnaque')) {
+                        return "🔒 Votre sécurité est notre priorité :\n\n✓ Toutes nos propriétés sont vérifiées\n✓ Titres fonciers authentifiés\n✓ Contrats légaux sécurisés\n✓ Paiements tracés\n✓ Équipe professionnelle certifiée\n\nCarre Premium = Confiance et transparence garanties !";
+                    }
+                    
+                    // Inscription/Compte
+                    if (message.includes('inscription') || message.includes('compte') || message.includes('inscrire') || message.includes('créer un compte')) {
+                        return "👤 Créer votre compte :\n\n1. Cliquez sur 'Inscription' en haut\n2. Remplissez vos informations\n3. Validez votre email\n4. Accédez à votre espace personnel\n\nAvantages : Sauvegarder vos favoris, alertes personnalisées, historique de recherches !";
+                    }
+                    
+                    // Merci
+                    if (message.includes('merci') || message.includes('thank')) {
+                        return "😊 Avec plaisir ! C'est un honneur de vous aider. N'hésitez pas si vous avez d'autres questions. Bonne recherche sur Carre Premium ! 🏠✨";
+                    }
+                    
+                    // Au revoir
+                    if (message.includes('au revoir') || message.includes('bye') || message.includes('à bientôt') || message.includes('adieu')) {
+                        return "👋 Au revoir ! Merci d'avoir visité Carre Premium. Revenez quand vous voulez, je serai toujours là pour vous aider. Bonne journée ! 🌟";
+                    }
+                    
+                    // Réponse par défaut enrichie
+                    return "🤔 Je suis là pour vous aider ! Voici ce que je peux faire pour vous :\n\n• 🏠 Vous aider à trouver une propriété\n• 💰 Vous renseigner sur les prix\n• 📍 Vous informer sur les villes disponibles\n• 📞 Vous donner nos coordonnées\n• 📄 Expliquer les procédures\n• 🔍 Guider votre recherche\n\nPosez-moi n'importe quelle question sur l'immobilier en Côte d'Ivoire !";
+                }
+            };
+        }
     </script>
     
-        @stack('scripts')
-        
-        <!-- Cookie Banner -->
-        <x-cookie-banner />
-    </body>
+    @stack('scripts')
+    
+    <!-- Cookie Banner -->
+    <x-cookie-banner />
+
+    <!-- Chatbot -->
+    @include('components.chatbot')
+</body>
 </html>

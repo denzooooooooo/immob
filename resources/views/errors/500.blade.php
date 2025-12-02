@@ -16,15 +16,15 @@
                 
                 <!-- Icône d'erreur au centre -->
                 <div class="absolute inset-0 flex items-center justify-center">
-                    <div class="w-24 h-24 bg-gradient-to-r from-red-500 to-gabon-blue rounded-full flex items-center justify-center animate-pulse">
+                    <div class="w-24 h-24 bg-gradient-to-r from-red-500 to-violet-600 rounded-full flex items-center justify-center animate-pulse">
                         <i class="fas fa-exclamation-triangle text-white text-3xl"></i>
                     </div>
                 </div>
                 
                 <!-- Éléments décoratifs -->
                 <div class="absolute top-1/4 left-1/4 w-8 h-8 bg-red-400 rounded-full animate-ping opacity-60"></div>
-                <div class="absolute top-1/3 right-1/4 w-6 h-6 bg-gabon-blue rounded-full animate-pulse opacity-40"></div>
-                <div class="absolute bottom-1/4 left-1/3 w-10 h-10 bg-gabon-green rounded-full animate-bounce opacity-50"></div>
+                <div class="absolute top-1/3 right-1/4 w-6 h-6 bg-violet-600 rounded-full animate-pulse opacity-40"></div>
+                <div class="absolute bottom-1/4 left-1/3 w-10 h-10 bg-violet-600 rounded-full animate-bounce opacity-50"></div>
             </div>
         </div>
         
@@ -44,13 +44,13 @@
         <!-- Actions -->
         <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <button onclick="window.location.reload()" 
-                    class="bg-gradient-to-r from-gabon-green to-gabon-blue text-white font-bold py-4 px-8 rounded-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center justify-center">
+                    class="bg-gradient-to-r from-violet-600 to-violet-600 text-white font-bold py-4 px-8 rounded-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center justify-center">
                 <i class="fas fa-redo-alt mr-2"></i>
                 Rafraîchir la page
             </button>
             
             <a href="{{ route('home') }}" 
-               class="bg-white border-2 border-gabon-blue text-gabon-blue font-bold py-4 px-8 rounded-lg hover:bg-gabon-blue hover:text-white transform hover:scale-105 transition-all duration-200 flex items-center justify-center">
+               class="bg-white border-2 border-violet-600 text-violet-600 font-bold py-4 px-8 rounded-lg hover:bg-violet-600 hover:text-white transform hover:scale-105 transition-all duration-200 flex items-center justify-center">
                 <i class="fas fa-home mr-2"></i>
                 Retour à l'accueil
             </a>
@@ -71,12 +71,12 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="text-left">
                     <h4 class="font-semibold text-gray-900 mb-2">
-                        <i class="fas fa-envelope text-gabon-green mr-2"></i>
+                        <i class="fas fa-envelope text-violet-600 mr-2"></i>
                         Par email
                     </h4>
                     <p class="text-gray-600">
                         Contactez notre support à
-                        <a href="mailto:support@monnkama.ga" class="text-gabon-blue hover:underline">
+                        <a href="mailto:support@monnkama.ga" class="text-violet-600 hover:underline">
                             support@monnkama.ga
                         </a>
                     </p>
@@ -84,12 +84,12 @@
                 
                 <div class="text-left">
                     <h4 class="font-semibold text-gray-900 mb-2">
-                        <i class="fas fa-phone text-gabon-green mr-2"></i>
+                        <i class="fas fa-phone text-violet-600 mr-2"></i>
                         Par téléphone
                     </h4>
                     <p class="text-gray-600">
                         Appelez-nous au
-                        <a href="tel:+24106052263" class="text-gabon-blue hover:underline">
+                        <a href="tel:+24106052263" class="text-violet-600 hover:underline">
                             +241 06 05 22 63
                         </a>
                     </p>
@@ -115,19 +115,19 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 <a href="{{ route('properties.index') }}" 
                    class="bg-white p-4 rounded-lg shadow hover:shadow-md transition-shadow duration-200 flex items-center">
-                    <i class="fas fa-search text-gabon-green text-xl mr-3"></i>
+                    <i class="fas fa-search text-violet-600 text-xl mr-3"></i>
                     <span class="text-gray-700">Parcourir les propriétés</span>
                 </a>
                 
                 <a href="{{ route('contact') }}" 
                    class="bg-white p-4 rounded-lg shadow hover:shadow-md transition-shadow duration-200 flex items-center">
-                    <i class="fas fa-envelope text-gabon-blue text-xl mr-3"></i>
+                    <i class="fas fa-envelope text-violet-600 text-xl mr-3"></i>
                     <span class="text-gray-700">Nous contacter</span>
                 </a>
                 
                 <a href="{{ route('about') }}" 
                    class="bg-white p-4 rounded-lg shadow hover:shadow-md transition-shadow duration-200 flex items-center">
-                    <i class="fas fa-info-circle text-gabon-yellow text-xl mr-3"></i>
+                    <i class="fas fa-info-circle text-violet-400 text-xl mr-3"></i>
                     <span class="text-gray-700">En savoir plus</span>
                 </a>
             </div>

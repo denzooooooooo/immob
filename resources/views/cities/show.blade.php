@@ -191,28 +191,28 @@
                                      alt="{{ $property->title }}"
                                      class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
                             @else
-                                <div class="w-full h-64 bg-gradient-to-br from-gabon-green to-gabon-blue flex items-center justify-center">
+                                <div class="w-full h-64 bg-gradient-to-br from-violet-600 to-violet-600 flex items-center justify-center">
                                     <i class="fas fa-home text-white text-4xl"></i>
                                 </div>
                             @endif
                             
                             <!-- Property Type Badge -->
                             <div class="absolute top-4 left-4">
-                                <span class="bg-gabon-yellow text-gray-900 px-3 py-1 rounded-full text-sm font-bold">
+                                <span class="bg-violet-400 text-gray-900 px-3 py-1 rounded-full text-sm font-bold">
                                     {{ ucfirst($property->type) }}
                                 </span>
                             </div>
                             
                             <!-- Status Badge -->
                             <div class="absolute top-4 right-4">
-                                <span class="bg-gabon-green text-white px-3 py-1 rounded-full text-sm font-bold">
+                                <span class="bg-violet-600 text-white px-3 py-1 rounded-full text-sm font-bold">
                                     {{ $property->status === 'for_sale' ? 'À vendre' : ($property->status === 'for_rent' ? 'À louer' : 'Hôtel') }}
                                 </span>
                             </div>
                             
                             @if($property->featured)
                                 <div class="absolute bottom-4 left-4">
-                                    <span class="bg-gabon-blue text-white px-3 py-1 rounded-full text-sm font-bold">
+                                    <span class="bg-violet-600 text-white px-3 py-1 rounded-full text-sm font-bold">
                                         <i class="fas fa-star mr-1"></i>
                                         Vedette
                                     </span>

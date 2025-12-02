@@ -52,7 +52,6 @@ Route::prefix('v1')->group(function () {
 
     // Location Routes
     Route::get('/cities', [LocationApiController::class, 'getCities']);
-    Route::get('/cities/{city}/neighborhoods', [LocationApiController::class, 'getNeighborhoodsByCity']);
 });
 
 // Routes pour les locations (compatibilité avec l'ancien système)

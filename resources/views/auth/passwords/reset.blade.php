@@ -101,7 +101,7 @@
         <div class="text-center animate-fade-in">
             <div class="flex justify-center mb-6">
                 <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-lg">
-                    <i class="fas fa-shield-alt text-gabon-green text-2xl"></i>
+                    <i class="fas fa-shield-alt text-violet-600 text-2xl"></i>
                 </div>
             </div>
             <h2 class="text-3xl font-bold text-white mb-2">
@@ -144,7 +144,7 @@
                     <!-- Email -->
                     <div class="input-group">
                         <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-                            <i class="fas fa-envelope mr-2 text-gabon-green"></i>
+                            <i class="fas fa-envelope mr-2 text-violet-600"></i>
                             Adresse email
                         </label>
                         <input id="email" 
@@ -152,7 +152,7 @@
                                type="email" 
                                autocomplete="email" 
                                required
-                               class="block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gabon-green focus:border-gabon-green transition-all duration-300"
+                               class="block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-violet-600 transition-all duration-300"
                                placeholder="votre@email.com"
                                value="{{ $email ?? old('email') }}">
                     </div>
@@ -160,7 +160,7 @@
                     <!-- Nouveau mot de passe -->
                     <div class="input-group">
                         <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
-                            <i class="fas fa-lock mr-2 text-gabon-green"></i>
+                            <i class="fas fa-lock mr-2 text-violet-600"></i>
                             Nouveau mot de passe
                         </label>
                         <div class="relative">
@@ -170,7 +170,7 @@
                                    autocomplete="new-password" 
                                    required
                                    onkeyup="checkPasswordStrength(this.value)"
-                                   class="block w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gabon-green focus:border-gabon-green transition-all duration-300"
+                                   class="block w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-violet-600 transition-all duration-300"
                                    placeholder="••••••••">
                             <button type="button" 
                                     onclick="togglePasswordVisibility('password', 'password-icon')"
@@ -189,7 +189,7 @@
                     <!-- Confirmation mot de passe -->
                     <div class="input-group">
                         <label for="password_confirmation" class="block text-sm font-medium text-gray-700 mb-2">
-                            <i class="fas fa-lock mr-2 text-gabon-green"></i>
+                            <i class="fas fa-lock mr-2 text-violet-600"></i>
                             Confirmer le mot de passe
                         </label>
                         <div class="relative">
@@ -198,7 +198,7 @@
                                    type="password" 
                                    autocomplete="new-password" 
                                    required
-                                   class="block w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gabon-green focus:border-gabon-green transition-all duration-300"
+                                   class="block w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-violet-600 transition-all duration-300"
                                    placeholder="••••••••">
                             <button type="button" 
                                     onclick="togglePasswordVisibility('password_confirmation', 'password-confirmation-icon')"
@@ -212,7 +212,7 @@
                 <!-- Bouton de réinitialisation -->
                 <div>
                     <button type="submit"
-                            class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-xl text-white btn-gradient hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gabon-green transition-all duration-300 hover-lift">
+                            class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-xl text-white btn-gradient hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-600 transition-all duration-300 hover-lift">
                         <span class="absolute left-0 inset-y-0 flex items-center pl-3">
                             <i class="fas fa-key text-white/80 group-hover:text-white"></i>
                         </span>
@@ -224,7 +224,7 @@
             <!-- Lien de retour -->
             <div class="text-center mt-6">
                 <a href="{{ route('login') }}" 
-                   class="inline-flex items-center text-sm font-medium text-gabon-green hover:text-gabon-green-light transition-colors duration-200">
+                   class="inline-flex items-center text-sm font-medium text-violet-600 hover:text-violet-600-light transition-colors duration-200">
                     <i class="fas fa-arrow-left mr-2"></i>
                     Retour à la connexion
                 </a>
@@ -234,7 +234,7 @@
             <div class="mt-6 p-4 bg-gray-50 rounded-xl border border-gray-100">
                 <div class="flex">
                     <div class="flex-shrink-0">
-                        <i class="fas fa-shield-alt text-gabon-blue"></i>
+                        <i class="fas fa-shield-alt text-violet-600"></i>
                     </div>
                     <div class="ml-3">
                         <h3 class="text-sm font-medium text-gray-800">

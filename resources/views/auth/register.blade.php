@@ -146,7 +146,7 @@
         <div class="text-center animate-fade-in">
             <div class="flex justify-center mb-6">
                 <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-lg">
-                    <i class="fas fa-user-plus text-gabon-blue text-2xl"></i>
+                    <i class="fas fa-user-plus text-violet-600 text-2xl"></i>
                 </div>
             </div>
             <h2 class="text-3xl font-bold text-white mb-2">
@@ -188,7 +188,7 @@
                     <!-- Nom complet -->
                     <div class="input-group">
                         <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
-                            <i class="fas fa-user mr-2 text-gabon-blue"></i>
+                            <i class="fas fa-user mr-2 text-violet-600"></i>
                             Nom complet
                         </label>
                         <input id="name" 
@@ -196,7 +196,7 @@
                                type="text" 
                                autocomplete="name" 
                                required
-                               class="block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gabon-blue focus:border-gabon-blue transition-all duration-300"
+                               class="block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-violet-600 transition-all duration-300"
                                placeholder="Votre nom complet"
                                value="{{ old('name') }}">
                     </div>
@@ -204,7 +204,7 @@
                     <!-- Email -->
                     <div class="input-group">
                         <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-                            <i class="fas fa-envelope mr-2 text-gabon-blue"></i>
+                            <i class="fas fa-envelope mr-2 text-violet-600"></i>
                             Adresse email
                         </label>
                         <input id="email" 
@@ -212,7 +212,7 @@
                                type="email" 
                                autocomplete="email" 
                                required
-                               class="block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gabon-blue focus:border-gabon-blue transition-all duration-300"
+                               class="block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-violet-600 transition-all duration-300"
                                placeholder="votre@email.com"
                                value="{{ old('email') }}">
                     </div>
@@ -220,14 +220,14 @@
                     <!-- Téléphone -->
                     <div class="input-group">
                         <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">
-                            <i class="fas fa-phone mr-2 text-gabon-blue"></i>
+                            <i class="fas fa-phone mr-2 text-violet-600"></i>
                             Numéro de téléphone
                         </label>
                         <input id="phone" 
                                name="phone" 
                                type="tel" 
                                autocomplete="tel"
-                               class="block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gabon-blue focus:border-gabon-blue transition-all duration-300"
+                               class="block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-violet-600 transition-all duration-300"
                                placeholder="+241 XX XX XX XX"
                                value="{{ old('phone') }}">
                     </div>
@@ -235,7 +235,7 @@
                     <!-- Type de compte -->
                     <div class="input-group">
                         <label class="block text-sm font-medium text-gray-700 mb-3">
-                            <i class="fas fa-users mr-2 text-gabon-blue"></i>
+                            <i class="fas fa-users mr-2 text-violet-600"></i>
                             Type de compte
                         </label>
                         <div class="grid grid-cols-1 gap-3">
@@ -244,7 +244,7 @@
                                     <input type="radio" id="role_client" name="role" value="client" class="sr-only" {{ old('role') == 'client' ? 'checked' : '' }}>
                                     <div class="flex-shrink-0">
                                         <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                                            <i class="fas fa-search text-gabon-blue"></i>
+                                            <i class="fas fa-search text-violet-600"></i>
                                         </div>
                                     </div>
                                     <div class="ml-3">
@@ -259,7 +259,7 @@
                                     <input type="radio" id="role_agent" name="role" value="agent" class="sr-only" {{ old('role') == 'agent' ? 'checked' : '' }}>
                                     <div class="flex-shrink-0">
                                         <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                                            <i class="fas fa-briefcase text-gabon-green"></i>
+                                            <i class="fas fa-briefcase text-violet-600"></i>
                                         </div>
                                     </div>
                                     <div class="ml-3">
@@ -274,7 +274,7 @@
                     <!-- Mot de passe -->
                     <div class="input-group">
                         <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
-                            <i class="fas fa-lock mr-2 text-gabon-blue"></i>
+                            <i class="fas fa-lock mr-2 text-violet-600"></i>
                             Mot de passe
                         </label>
                         <div class="relative">
@@ -284,7 +284,7 @@
                                    autocomplete="new-password" 
                                    required
                                    onkeyup="checkPasswordStrength(this.value)"
-                                   class="block w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gabon-blue focus:border-gabon-blue transition-all duration-300"
+                                   class="block w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-violet-600 transition-all duration-300"
                                    placeholder="••••••••">
                             <button type="button" 
                                     onclick="togglePasswordVisibility('password', 'password-icon')"
@@ -303,7 +303,7 @@
                     <!-- Confirmation mot de passe -->
                     <div class="input-group">
                         <label for="password_confirmation" class="block text-sm font-medium text-gray-700 mb-2">
-                            <i class="fas fa-lock mr-2 text-gabon-blue"></i>
+                            <i class="fas fa-lock mr-2 text-violet-600"></i>
                             Confirmer le mot de passe
                         </label>
                         <div class="relative">
@@ -312,7 +312,7 @@
                                    type="password" 
                                    autocomplete="new-password" 
                                    required
-                                   class="block w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gabon-blue focus:border-gabon-blue transition-all duration-300"
+                                   class="block w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-violet-600 transition-all duration-300"
                                    placeholder="••••••••">
                             <button type="button" 
                                     onclick="togglePasswordVisibility('password_confirmation', 'password-confirmation-icon')"
@@ -329,14 +329,14 @@
                            name="terms" 
                            type="checkbox" 
                            required
-                           class="h-4 w-4 mt-1 text-gabon-blue focus:ring-gabon-blue border-gray-300 rounded">
+                           class="h-4 w-4 mt-1 text-violet-600 focus:ring-violet-600 border-gray-300 rounded">
                     <label for="terms" class="ml-3 block text-sm text-gray-700">
                         J'accepte les
-                        <a href="{{ route('terms') }}" class="font-medium text-gabon-blue hover:text-gabon-blue-light transition-colors duration-200">
+                        <a href="{{ route('terms') }}" class="font-medium text-violet-600 hover:text-violet-600-light transition-colors duration-200">
                             conditions d'utilisation
                         </a>
                         et la
-                        <a href="{{ route('privacy') }}" class="font-medium text-gabon-blue hover:text-gabon-blue-light transition-colors duration-200">
+                        <a href="{{ route('privacy') }}" class="font-medium text-violet-600 hover:text-violet-600-light transition-colors duration-200">
                             politique de confidentialité
                         </a>
                     </label>
@@ -345,7 +345,7 @@
                 <!-- Bouton d'inscription -->
                 <div>
                     <button type="submit"
-                            class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-xl text-white btn-gradient hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gabon-blue transition-all duration-300 hover-lift">
+                            class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-xl text-white btn-gradient hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-600 transition-all duration-300 hover-lift">
                         <span class="absolute left-0 inset-y-0 flex items-center pl-3">
                             <i class="fas fa-user-plus text-white/80 group-hover:text-white"></i>
                         </span>
@@ -386,7 +386,7 @@
                 <p class="text-sm text-gray-600">
                     Déjà un compte ?
                     <a href="{{ route('login') }}" 
-                       class="font-medium text-gabon-blue hover:text-gabon-blue-light transition-colors duration-200">
+                       class="font-medium text-violet-600 hover:text-violet-600-light transition-colors duration-200">
                         Se connecter
                     </a>
                 </p>

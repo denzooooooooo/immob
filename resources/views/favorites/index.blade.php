@@ -15,7 +15,7 @@
                 </div>
                 
                 <div class="flex items-center space-x-4">
-                    <span class="favorites-count bg-gabon-blue text-white px-4 py-2 rounded-full font-semibold">
+                    <span class="favorites-count bg-violet-600 text-white px-4 py-2 rounded-full font-semibold">
                         0 favoris
                     </span>
                     
@@ -34,7 +34,7 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Type de bien</label>
-                    <select id="filter-type" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gabon-blue focus:border-transparent">
+                    <select id="filter-type" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-600 focus:border-transparent">
                         <option value="">Tous les types</option>
                         <option value="house">Maison</option>
                         <option value="apartment">Appartement</option>
@@ -46,7 +46,7 @@
                 
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Ville</label>
-                    <select id="filter-city" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gabon-blue focus:border-transparent">
+                    <select id="filter-city" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-600 focus:border-transparent">
                         <option value="">Toutes les villes</option>
                         <!-- Cities will be populated dynamically -->
                     </select>
@@ -54,7 +54,7 @@
                 
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Statut</label>
-                    <select id="filter-status" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gabon-blue focus:border-transparent">
+                    <select id="filter-status" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-600 focus:border-transparent">
                         <option value="">Tous les statuts</option>
                         <option value="for_sale">À vendre</option>
                         <option value="for_rent">À louer</option>
@@ -64,7 +64,7 @@
                 
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Tri</label>
-                    <select id="sort-by" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gabon-blue focus:border-transparent">
+                    <select id="sort-by" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-600 focus:border-transparent">
                         <option value="created_at">Plus récents</option>
                         <option value="price_asc">Prix croissant</option>
                         <option value="price_desc">Prix décroissant</option>
@@ -78,7 +78,7 @@
         <div id="favorites-container">
             <!-- Loading state -->
             <div id="loading-state" class="text-center py-12">
-                <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-gabon-blue"></div>
+                <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-violet-600"></div>
                 <p class="text-gray-600 mt-4">Chargement de vos favoris...</p>
             </div>
 
@@ -89,7 +89,7 @@
                 </div>
                 <h3 class="text-xl font-semibold text-gray-900 mb-2">Aucun favori pour le moment</h3>
                 <p class="text-gray-600 mb-6">Commencez à explorer nos propriétés et ajoutez vos coups de cœur !</p>
-                <a href="{{ route('properties.index') }}" class="inline-flex items-center bg-gabon-blue text-white px-6 py-3 rounded-lg hover:bg-gabon-green transition-colors duration-200">
+                <a href="{{ route('properties.index') }}" class="inline-flex items-center bg-violet-600 text-white px-6 py-3 rounded-lg hover:bg-violet-600 transition-colors duration-200">
                     <i class="fas fa-search mr-2"></i>
                     Découvrir les propriétés
                 </a>
@@ -259,7 +259,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <img src="${imageUrl}" alt="${property.title}" class="w-full h-48 object-cover">
                     
                     <div class="absolute top-4 right-4">
-                        <span class="bg-gabon-green text-white px-2 py-1 rounded text-sm">
+                        <span class="bg-violet-600 text-white px-2 py-1 rounded text-sm">
                             ${property.status === 'for_sale' ? 'À vendre' : property.status === 'for_rent' ? 'À louer' : 'Hôtel'}
                         </span>
                     </div>
@@ -276,11 +276,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     <h3 class="text-lg font-semibold text-gray-900 mb-2">${property.title}</h3>
                     
                     <div class="flex items-center text-gray-600 mb-2">
-                        <i class="fas fa-map-marker-alt mr-2 text-gabon-green"></i>
+                        <i class="fas fa-map-marker-alt mr-2 text-violet-600"></i>
                         <span>${property.city}</span>
                     </div>
                     
-                    <div class="text-xl font-bold text-gabon-blue mb-3">
+                    <div class="text-xl font-bold text-violet-600 mb-3">
                         ${new Intl.NumberFormat('fr-FR').format(property.price)} ${property.currency}
                     </div>
                     
@@ -292,7 +292,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                     ` : ''}
                     
-                    <a href="/properties/${property.slug}" class="block w-full bg-gabon-blue text-white text-center py-2 rounded-lg hover:bg-gabon-green transition-colors duration-200">
+                    <a href="/properties/${property.slug}" class="block w-full bg-violet-600 text-white text-center py-2 rounded-lg hover:bg-violet-600 transition-colors duration-200">
                         Voir les détails
                     </a>
                 </div>

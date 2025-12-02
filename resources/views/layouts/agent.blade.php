@@ -14,12 +14,12 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Couleurs du Gabon -->
+    <!-- Couleurs du Côte d'Ivoire -->
     <style>
         :root {
-            --gabon-green: #009639;
-            --gabon-yellow: #FCD116;
-            --gabon-blue: #3A75C4;
+            --violet-600: #009639;
+            --violet-400: #FCD116;
+            --violet-600: #3A75C4;
         }
         
         body {
@@ -27,20 +27,20 @@
         }
         
         .sidebar-link.active {
-            background-color: var(--gabon-green);
+            background-color: var(--violet-600);
             color: white;
         }
         
         .btn-primary {
-            background-color: var(--gabon-green);
+            background-color: var(--violet-600);
         }
         
         .btn-secondary {
-            background-color: var(--gabon-blue);
+            background-color: var(--violet-600);
         }
         
         .badge-warning {
-            background-color: var(--gabon-yellow);
+            background-color: var(--violet-400);
         }
     </style>
     

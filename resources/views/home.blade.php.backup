@@ -1,0 +1,743 @@
+@extends('layouts.app')
+
+@section('title', ($siteSettings['site_name'] ?? 'Carre Premium') . ' - ' . ($siteSettings['site_description'] ?? 'Immobilier au Côte d'Ivoire'))
+@section('description', $siteSettings['hero_subtitle'] ?? 'Trouvez votre prochain chez-vous au Côte d'Ivoire. La première plateforme immobilière 100% ivoirienne.')
+
+@section('content')
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80"
+             alt="Immobilier moderne au Côte d'Ivoire"
+             class="w-full h-full object-cover">
+        <!-- Light overlay for better text readability -->
+        <div class="absolute inset-0 bg-black/30"></div>
+        <!-- Subtle gradient overlay with Côte d'Ivoire colors -->
+        <div class="absolute inset-0 bg-gradient-to-br from-violet-600/40 via-violet-600/30 to-violet-400/20"></div>
+    </div>
+
+    <!-- Subtle animated background elements -->
+    <div class="absolute inset-0">
+        <div class="absolute top-20 left-10 w-32 h-32 bg-violet-600/10 rounded-full animate-pulse backdrop-blur-sm"></div>
+        <div class="absolute top-40 right-20 w-24 h-24 bg-violet-600/8 rounded-full animate-bounce backdrop-blur-sm"></div>
+        <div class="absolute bottom-20 left-1/4 w-40 h-40 bg-violet-400/12 rounded-full animate-pulse backdrop-blur-sm"></div>
+        <div class="absolute bottom-40 right-1/3 w-28 h-28 bg-violet-600/10 rounded-full animate-bounce backdrop-blur-sm"></div>
+
+        <!-- Floating property icons -->
+        <div class="absolute top-1/4 left-1/4 text-gray-600/20 animate-float">
+            <i class="fas fa-home text-4xl"></i>
+        </div>
+        <div class="absolute top-1/3 right-1/4 text-gray-600/20 animate-float-delayed">
+            <i class="fas fa-building text-3xl"></i>
+        </div>
+        <div class="absolute bottom-1/3 left-1/3 text-gray-600/20 animate-float">
+            <i class="fas fa-key text-2xl"></i>
+        </div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+        <div class="animate-fade-in-up">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                {{ $siteSettings['hero_title'] ?? 'Trouvez votre prochain chez-vous en Côte d\'Ivoire' }}
+            </h1>
+
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed opacity-90">
+                {{ $siteSettings['hero_subtitle'] ?? 'La première plateforme immobilière 100% ivoirienne. Découvrez des milliers de propriétés dans tout le pays.' }}
+            </p>
+
+            <!-- Search Form -->
+            <div class="bg-white/70 backdrop-blur-lg rounded-2xl p-6 md:p-8 max-w-4xl mx-auto mb-8 shadow-2xl border border-white/30">
+                <form action="{{ route('search.index') }}" method="GET" class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div class="relative">
+                        <select name="type" class="w-full px-4 py-3 rounded-lg bg-gray-50 text-gray-800 border border-gray-200 focus:ring-2 focus:ring-violet-600 focus:border-violet-600 transition-all duration-200 appearance-none">
+                            <option value="">Type de bien</option>
+                            <option value="house">Maison</option>
+                            <option value="apartment">Appartement</option>
+                            <option value="land">Terrain</option>
+                            <option value="commercial">Commercial</option>
+                            <option value="hotel">Hôtel</option>
+                        </select>
+                        <i class="fas fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+                    </div>
+
+                    <div class="relative">
+                        <select name="city" class="w-full px-4 py-3 rounded-lg bg-gray-50 text-gray-800 border border-gray-200 focus:ring-2 focus:ring-violet-600 focus:border-violet-600 transition-all duration-200 appearance-none">
+                            <option value="">Ville</option>
+                            @foreach($cities as $city)
+                                <option value="{{ $city->slug }}">{{ $city->name }}</option>
+                            @endforeach
+                        </select>
+                        <i class="fas fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+                    </div>
+
+                    <div class="relative">
+                        <select name="status" class="w-full px-4 py-3 rounded-lg bg-gray-50 text-gray-800 border border-gray-200 focus:ring-2 focus:ring-violet-600 focus:border-violet-600 transition-all duration-200 appearance-none">
+                            <option value="">À vendre/louer</option>
+                            <option value="for_sale">À vendre</option>
+                            <option value="for_rent">À louer</option>
+                            <option value="hotel_room">Hôtel</option>
+                        </select>
+                        <i class="fas fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+                    </div>
+
+                    <button type="submit" class="bg-violet-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-violet-700 hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center justify-center">
+                        <i class="fas fa-search mr-2"></i>
+                        Rechercher
+                    </button>
+                </form>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="{{ route('properties.index') }}" class="bg-violet-600 text-white font-bold py-4 px-8 rounded-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center justify-center">
+                    <i class="fas fa-home mr-2"></i>
+                    Voir toutes les propriétés
+                </a>
+                <a href="{{ route('register') }}" class="border-2 border-violet-600 text-violet-600 bg-white font-bold py-4 px-8 rounded-lg hover:bg-violet-600 hover:text-white transform hover:scale-105 transition-all duration-200 flex items-center justify-center">
+                    <i class="fas fa-user-plus mr-2"></i>
+                    Rejoignez-nous
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator absolute bottom-8 left-1/2 transform -translate-x-1/2 text-gray-600 animate-bounce cursor-pointer hover:text-violet-600 transition-colors duration-200">
+        <i class="fas fa-chevron-down text-2xl"></i>
+    </div>
+</section>
+
+<!-- Statistics Section -->
+<section class="statistics-section py-20 bg-gradient-to-br from-violet-50 via-white to-violet-50 relative overflow-hidden">
+    <!-- Background decoration -->
+    <div class="absolute inset-0">
+        <div class="absolute top-10 left-10 w-32 h-32 bg-violet-100/30 rounded-full blur-xl"></div>
+        <div class="absolute bottom-10 right-10 w-40 h-40 bg-violet-200/20 rounded-full blur-xl"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-violet-50/40 rounded-full blur-2xl"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Chiffres clés de notre plateforme
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Découvrez l'ampleur de notre réseau immobilier et la confiance de nos utilisateurs
+            </p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div class="text-center group">
+                <div class="relative mx-auto mb-6">
+                    <div class="w-20 h-20 bg-gradient-to-br from-violet-600 to-violet-800 rounded-2xl flex items-center justify-center mx-auto shadow-lg group-hover:shadow-2xl group-hover:shadow-violet-500/25 transition-all duration-300 transform group-hover:scale-110 group-hover:rotate-6">
+                        <i class="fas fa-home text-white text-2xl"></i>
+                    </div>
+                    <div class="absolute -top-2 -right-2 w-6 h-6 bg-violet-500 rounded-full flex items-center justify-center">
+                        <i class="fas fa-star text-white text-xs"></i>
+                    </div>
+                </div>
+                <div class="text-5xl md:text-6xl font-bold bg-gradient-to-r from-violet-600 to-violet-800 bg-clip-text text-transparent mb-3">{{ $stats['total_properties'] ?? 5 }}</div>
+                <div class="text-gray-600 font-semibold text-lg">Biens disponibles</div>
+                <div class="w-16 h-1 bg-gradient-to-r from-violet-600 to-violet-800 rounded-full mx-auto mt-3"></div>
+            </div>
+
+            <div class="text-center group">
+                <div class="relative mx-auto mb-6">
+                    <div class="w-20 h-20 bg-gradient-to-br from-violet-500 to-violet-700 rounded-2xl flex items-center justify-center mx-auto shadow-lg group-hover:shadow-2xl group-hover:shadow-violet-500/25 transition-all duration-300 transform group-hover:scale-110 group-hover:-rotate-6">
+                        <i class="fas fa-map-marker-alt text-white text-2xl"></i>
+                    </div>
+                    <div class="absolute -top-2 -right-2 w-6 h-6 bg-violet-400 rounded-full flex items-center justify-center">
+                        <i class="fas fa-map text-white text-xs"></i>
+                    </div>
+                </div>
+                <div class="text-5xl md:text-6xl font-bold bg-gradient-to-r from-violet-500 to-violet-700 bg-clip-text text-transparent mb-3">{{ $stats['total_cities'] ?? 3 }}</div>
+                <div class="text-gray-600 font-semibold text-lg">Villes couvertes</div>
+                <div class="w-16 h-1 bg-gradient-to-r from-violet-500 to-violet-700 rounded-full mx-auto mt-3"></div>
+            </div>
+
+            <div class="text-center group">
+                <div class="relative mx-auto mb-6">
+                    <div class="w-20 h-20 bg-gradient-to-br from-violet-400 to-violet-600 rounded-2xl flex items-center justify-center mx-auto shadow-lg group-hover:shadow-2xl group-hover:shadow-violet-500/25 transition-all duration-300 transform group-hover:scale-110 group-hover:rotate-6">
+                        <i class="fas fa-tag text-white text-2xl"></i>
+                    </div>
+                    <div class="absolute -top-2 -right-2 w-6 h-6 bg-violet-300 rounded-full flex items-center justify-center">
+                        <i class="fas fa-dollar-sign text-white text-xs"></i>
+                    </div>
+                </div>
+                <div class="text-5xl md:text-6xl font-bold bg-gradient-to-r from-violet-400 to-violet-600 bg-clip-text text-transparent mb-3">{{ $stats['properties_for_sale'] ?? 3 }}</div>
+                <div class="text-gray-600 font-semibold text-lg">Biens à vendre</div>
+                <div class="w-16 h-1 bg-gradient-to-r from-violet-400 to-violet-600 rounded-full mx-auto mt-3"></div>
+            </div>
+
+            <div class="text-center group">
+                <div class="relative mx-auto mb-6">
+                    <div class="w-20 h-20 bg-gradient-to-br from-violet-300 to-violet-500 rounded-2xl flex items-center justify-center mx-auto shadow-lg group-hover:shadow-2xl group-hover:shadow-violet-500/25 transition-all duration-300 transform group-hover:scale-110 group-hover:-rotate-6">
+                        <i class="fas fa-key text-white text-2xl"></i>
+                    </div>
+                    <div class="absolute -top-2 -right-2 w-6 h-6 bg-violet-200 rounded-full flex items-center justify-center">
+                        <i class="fas fa-home text-violet-600 text-xs"></i>
+                    </div>
+                </div>
+                <div class="text-5xl md:text-6xl font-bold bg-gradient-to-r from-violet-300 to-violet-500 bg-clip-text text-transparent mb-3">{{ $stats['properties_for_rent'] ?? 2 }}</div>
+                <div class="text-gray-600 font-semibold text-lg">Biens à louer</div>
+                <div class="w-16 h-1 bg-gradient-to-r from-violet-300 to-violet-500 rounded-full mx-auto mt-3"></div>
+            </div>
+        </div>
+
+        <!-- Additional info -->
+        <div class="text-center mt-16">
+            <div class="inline-flex items-center bg-white/80 backdrop-blur-sm rounded-2xl px-8 py-4 shadow-lg border border-violet-100">
+                <i class="fas fa-users text-violet-600 mr-3 text-xl"></i>
+                <span class="text-gray-700 font-medium">Plus de 1000 utilisateurs actifs chaque mois</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Properties Section -->
+<section class="py-24 bg-gradient-to-br from-red-50 via-violet-50 to-red-50 relative overflow-hidden">
+    <!-- Background decoration -->
+    <div class="absolute inset-0">
+        <div class="absolute top-20 left-10 w-40 h-40 bg-red-100/20 rounded-full blur-2xl"></div>
+        <div class="absolute bottom-20 right-10 w-32 h-32 bg-violet-200/15 rounded-full blur-xl"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-red-50/10 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-20">
+            <h2 class="text-4xl md:text-6xl font-bold text-gray-800 mb-6">
+                Toutes nos
+                <span class="block bg-gradient-to-r from-red-600 to-violet-600 bg-clip-text text-transparent">
+                    propriétés
+                </span>
+            </h2>
+            <p class="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+                Découvrez 5 propriétés exceptionnelles dans toute la Côte d'Ivoire, soigneusement sélectionnées pour vous offrir le meilleur de l'immobilier local.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            @foreach($featuredProperties as $property)
+                <div class="property-card bg-white rounded-3xl shadow-xl overflow-hidden group hover:shadow-2xl hover:shadow-violet-500/10 transform hover:-translate-y-2 transition-all duration-500 border border-violet-100/50">
+                    <div class="relative overflow-hidden">
+                        @if($property->media->count() > 0)
+                            <img src="{{ $property->media->first()->url }}"
+                                 alt="{{ $property->title }}"
+                                 class="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-700">
+                        @else
+                            <div class="w-full h-72 bg-gradient-to-br from-violet-400 to-violet-600 flex items-center justify-center">
+                                <i class="fas fa-home text-white text-5xl"></i>
+                            </div>
+                        @endif
+
+                        <!-- Property Type Badge -->
+                        <div class="absolute top-6 left-6">
+                            <span class="bg-gradient-to-r from-violet-500 to-violet-600 text-white px-4 py-2 rounded-2xl text-sm font-bold shadow-lg backdrop-blur-sm">
+                                {{ ucfirst($property->type) }}
+                            </span>
+                        </div>
+
+                        <!-- Status Badge -->
+                        <div class="absolute top-6 right-6">
+                            <span class="bg-gradient-to-r from-violet-600 to-violet-800 text-white px-4 py-2 rounded-2xl text-sm font-bold shadow-lg backdrop-blur-sm">
+                                {{ $property->status === 'for_sale' ? 'À vendre' : ($property->status === 'for_rent' ? 'À louer' : 'Hôtel') }}
+                            </span>
+                        </div>
+
+                        <!-- Favorite Button -->
+                        <div class="absolute bottom-6 right-6">
+                            <button class="favorite-btn w-12 h-12 bg-white/95 backdrop-blur-sm rounded-2xl flex items-center justify-center text-gray-600 hover:text-red-500 hover:bg-white shadow-lg transition-all duration-300 group-hover:scale-110" data-property-id="{{ $property->id }}">
+                                <i class="far fa-heart text-lg"></i>
+                            </button>
+                        </div>
+
+                        <!-- Overlay gradient -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3 group-hover:text-violet-700 transition-colors duration-300 leading-tight">
+                            {{ $property->title }}
+                        </h3>
+
+                        <div class="flex items-center text-gray-600 mb-4">
+                            <i class="fas fa-map-marker-alt mr-3 text-violet-500 text-lg"></i>
+                            <span class="font-medium">{{ $property->city }}</span>
+                        </div>
+
+                        <div class="text-3xl font-bold bg-gradient-to-r from-violet-600 to-violet-800 bg-clip-text text-transparent mb-6">
+                            {{ number_format($property->price, 0, ',', ' ') }} {{ $property->currency }}
+                        </div>
+
+                        @if($property->bedrooms || $property->bathrooms || $property->surface_area)
+                            <div class="flex items-center justify-between text-gray-500 text-sm mb-6 bg-gray-50 rounded-2xl p-4">
+                                @if($property->bedrooms)
+                                    <div class="flex items-center">
+                                        <i class="fas fa-bed mr-2 text-violet-500"></i>
+                                        <span class="font-semibold">{{ $property->bedrooms }} ch.</span>
+                                    </div>
+                                @endif
+
+                                @if($property->bathrooms)
+                                    <div class="flex items-center">
+                                        <i class="fas fa-bath mr-2 text-violet-500"></i>
+                                        <span class="font-semibold">{{ $property->bathrooms }} SDB</span>
+                                    </div>
+                                @endif
+
+                                <div class="flex items-center">
+                                    <i class="fas fa-ruler-combined mr-2 text-violet-500"></i>
+                                    <span class="font-semibold">{{ number_format($property->surface_area, 0) }} m²</span>
+                                </div>
+                            </div>
+                        @endif
+
+                        <a href="{{ route('properties.show', $property->slug) }}"
+                           class="block w-full bg-gradient-to-r from-violet-600 to-violet-800 text-white text-center py-4 rounded-2xl font-bold hover:shadow-xl hover:shadow-violet-500/25 transform hover:scale-105 transition-all duration-300 group">
+                            <span class="flex items-center justify-center">
+                                Voir les détails
+                                <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform duration-200"></i>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+
+        <div class="text-center mt-16">
+            <a href="{{ route('properties.index') }}"
+               class="inline-flex items-center bg-gradient-to-r from-violet-600 to-violet-800 text-white font-bold py-5 px-10 rounded-2xl hover:shadow-2xl hover:shadow-violet-500/25 transform hover:scale-105 transition-all duration-300">
+                <span class="text-lg">Voir toutes les propriétés</span>
+                <i class="fas fa-arrow-right ml-3 text-xl"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Cities Section -->
+<section class="py-24 bg-gradient-to-br from-violet-50 via-white to-violet-50 relative overflow-hidden">
+    <!-- Background decoration -->
+    <div class="absolute inset-0">
+        <div class="absolute top-20 left-10 w-40 h-40 bg-violet-100/20 rounded-full blur-2xl"></div>
+        <div class="absolute bottom-20 right-10 w-32 h-32 bg-violet-200/15 rounded-full blur-xl"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-violet-50/10 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-20">
+            <h2 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+                Explorez la
+                <span class="block bg-gradient-to-r from-violet-600 to-violet-800 bg-clip-text text-transparent">
+                    Côte d'Ivoire
+                </span>
+            </h2>
+            <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                Découvrez les opportunités immobilières dans les principales villes de Côte d'Ivoire
+            </p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+            @foreach($cities->take(8) as $city)
+                <a href="{{ route('city', $city->slug) }}"
+                   class="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-violet-600 via-violet-700 to-violet-800 p-8 text-white hover:shadow-2xl hover:shadow-violet-500/25 transform hover:scale-105 hover:-translate-y-2 transition-all duration-500 border border-violet-400/20">
+                    <div class="relative z-10">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-2xl font-bold">{{ $city->name }}</h3>
+                            <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors duration-300">
+                                <i class="fas fa-map-marker-alt text-sm"></i>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <p class="text-violet-100 font-semibold text-lg">{{ $city->properties_count ?? 0 }} propriétés</p>
+                            <div class="flex text-violet-200">
+                                <i class="fas fa-star text-sm"></i>
+                                <i class="fas fa-star text-sm ml-1"></i>
+                                <i class="fas fa-star text-sm ml-1"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Decorative elements -->
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12 group-hover:scale-150 group-hover:bg-white/20 transition-all duration-500"></div>
+                    <div class="absolute bottom-0 left-0 w-20 h-20 bg-violet-300/20 rounded-full -ml-10 -mb-10 group-hover:scale-125 group-hover:bg-violet-300/30 transition-all duration-500"></div>
+
+                    <!-- Hover overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl"></div>
+                </a>
+            @endforeach
+        </div>
+
+        <div class="text-center mt-16">
+            <a href="{{ route('cities.index') }}"
+               class="inline-flex items-center bg-gradient-to-r from-violet-600 to-violet-800 text-white font-bold py-5 px-10 rounded-2xl hover:shadow-2xl hover:shadow-violet-500/25 transform hover:scale-105 transition-all duration-300">
+                <span class="text-lg">Voir toutes les villes</span>
+                <i class="fas fa-arrow-right ml-3 text-xl"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="py-24 bg-gradient-to-br from-white via-violet-50/30 to-white relative overflow-hidden">
+    <!-- Background decoration -->
+    <div class="absolute inset-0">
+        <div class="absolute top-20 left-10 w-40 h-40 bg-violet-100/20 rounded-full blur-2xl"></div>
+        <div class="absolute bottom-20 right-10 w-32 h-32 bg-violet-200/15 rounded-full blur-xl"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-violet-50/10 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-20">
+            <h2 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+                Ce que disent nos
+                <span class="block bg-gradient-to-r from-violet-600 to-violet-800 bg-clip-text text-transparent">
+                    clients
+                </span>
+            </h2>
+            <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                Découvrez les témoignages authentiques de ceux qui ont trouvé leur bonheur grâce à notre plateforme
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white rounded-3xl shadow-xl p-8 transform hover:scale-105 hover:-translate-y-2 transition-all duration-500 border border-violet-100/50 group">
+                <div class="flex items-center mb-6">
+                    <div class="relative">
+                        <div class="w-16 h-16 bg-gradient-to-br from-violet-600 to-violet-800 rounded-2xl flex items-center justify-center text-white text-2xl font-bold shadow-lg">
+                            K
+                        </div>
+                        <div class="absolute -top-1 -right-1 w-6 h-6 bg-violet-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-quote-left text-white text-xs"></i>
+                        </div>
+                    </div>
+                    <div class="ml-6">
+                        <h4 class="text-xl font-bold text-gray-900">Kofi Kouassi</h4>
+                        <p class="text-violet-600 font-medium">Abidjan</p>
+                    </div>
+                </div>
+                <div class="flex text-violet-500 mb-6">
+                    <i class="fas fa-star text-lg"></i>
+                    <i class="fas fa-star text-lg ml-1"></i>
+                    <i class="fas fa-star text-lg ml-1"></i>
+                    <i class="fas fa-star text-lg ml-1"></i>
+                    <i class="fas fa-star text-lg ml-1"></i>
+                </div>
+                <p class="text-gray-700 text-lg leading-relaxed italic">
+                    "Excellente plateforme ! J'ai trouvé mon appartement en moins d'une semaine. L'équipe est très professionnelle et à l'écoute."
+                </p>
+                <div class="mt-6 flex items-center text-violet-600">
+                    <i class="fas fa-check-circle mr-2"></i>
+                    <span class="text-sm font-medium">Vérifié</span>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-xl p-8 transform hover:scale-105 hover:-translate-y-2 transition-all duration-500 border border-violet-100/50 group">
+                <div class="flex items-center mb-6">
+                    <div class="relative">
+                        <div class="w-16 h-16 bg-gradient-to-br from-violet-500 to-violet-700 rounded-2xl flex items-center justify-center text-white text-2xl font-bold shadow-lg">
+                            A
+                        </div>
+                        <div class="absolute -top-1 -right-1 w-6 h-6 bg-violet-400 rounded-full flex items-center justify-center">
+                            <i class="fas fa-quote-left text-white text-xs"></i>
+                        </div>
+                    </div>
+                    <div class="ml-6">
+                        <h4 class="text-xl font-bold text-gray-900">Amina Traoré</h4>
+                        <p class="text-violet-600 font-medium">Yamoussoukro</p>
+                    </div>
+                </div>
+                <div class="flex text-violet-500 mb-6">
+                    <i class="fas fa-star text-lg"></i>
+                    <i class="fas fa-star text-lg ml-1"></i>
+                    <i class="fas fa-star text-lg ml-1"></i>
+                    <i class="fas fa-star text-lg ml-1"></i>
+                    <i class="fas fa-star text-lg ml-1"></i>
+                </div>
+                <p class="text-gray-700 text-lg leading-relaxed italic">
+                    "Service impeccable ! La recherche est très intuitive et les photos de qualité. Je recommande vivement notre plateforme."
+                </p>
+                <div class="mt-6 flex items-center text-violet-600">
+                    <i class="fas fa-check-circle mr-2"></i>
+                    <span class="text-sm font-medium">Vérifié</span>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-xl p-8 transform hover:scale-105 hover:-translate-y-2 transition-all duration-500 border border-violet-100/50 group">
+                <div class="flex items-center mb-6">
+                    <div class="relative">
+                        <div class="w-16 h-16 bg-gradient-to-br from-violet-400 to-violet-600 rounded-2xl flex items-center justify-center text-white text-2xl font-bold shadow-lg">
+                            J
+                        </div>
+                        <div class="absolute -top-1 -right-1 w-6 h-6 bg-violet-300 rounded-full flex items-center justify-center">
+                            <i class="fas fa-quote-left text-white text-xs"></i>
+                        </div>
+                    </div>
+                    <div class="ml-6">
+                        <h4 class="text-xl font-bold text-gray-900">Jean Koné</h4>
+                        <p class="text-violet-600 font-medium">Bouaké</p>
+                    </div>
+                </div>
+                <div class="flex text-violet-500 mb-6">
+                    <i class="fas fa-star text-lg"></i>
+                    <i class="fas fa-star text-lg ml-1"></i>
+                    <i class="fas fa-star text-lg ml-1"></i>
+                    <i class="fas fa-star text-lg ml-1"></i>
+                    <i class="fas fa-star text-lg ml-1"></i>
+                </div>
+                <p class="text-gray-700 text-lg leading-relaxed italic">
+                    "Grâce à notre plateforme, j'ai pu vendre ma maison rapidement et au bon prix. Une expérience moderne et efficace !"
+                </p>
+                <div class="mt-6 flex items-center text-violet-600">
+                    <i class="fas fa-check-circle mr-2"></i>
+                    <span class="text-sm font-medium">Vérifié</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trust indicators -->
+        <div class="text-center mt-16">
+            <div class="inline-flex items-center bg-white/80 backdrop-blur-sm rounded-2xl px-8 py-4 shadow-lg border border-violet-100">
+                <i class="fas fa-shield-alt text-violet-600 mr-3 text-xl"></i>
+                <span class="text-gray-700 font-medium">Tous nos témoignages sont vérifiés et authentiques</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us Section -->
+<section class="py-24 bg-gradient-to-br from-violet-600 via-violet-700 to-violet-800 relative overflow-hidden">
+    <!-- Background decoration -->
+    <div class="absolute inset-0">
+        <div class="absolute top-0 left-0 w-full h-full bg-white/5"></div>
+        <div class="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
+        <div class="absolute bottom-10 right-10 w-40 h-40 bg-white/10 rounded-full blur-xl"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-white/5 rounded-full blur-2xl"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-20">
+            <h2 class="text-4xl md:text-6xl font-bold text-white mb-6">
+                Pourquoi choisir
+                <span class="block bg-gradient-to-r from-white to-violet-200 bg-clip-text text-transparent">
+                    {{ $siteSettings['site_name'] ?? 'Carre Premium' }} ?
+                </span>
+            </h2>
+            <p class="text-xl md:text-2xl text-violet-100 max-w-3xl mx-auto leading-relaxed">
+                Nous révolutionnons le marché immobilier avec innovation, excellence et une expérience utilisateur exceptionnelle
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="text-center group">
+                <div class="relative mx-auto mb-8">
+                    <div class="w-24 h-24 bg-gradient-to-br from-white to-violet-200 rounded-3xl flex items-center justify-center mx-auto shadow-2xl group-hover:shadow-white/25 transition-all duration-300 transform group-hover:scale-110 group-hover:rotate-6">
+                        <i class="fas fa-shield-alt text-violet-700 text-4xl"></i>
+                    </div>
+                    <div class="absolute -top-2 -right-2 w-8 h-8 bg-violet-500 rounded-full flex items-center justify-center">
+                        <i class="fas fa-check text-white text-sm"></i>
+                    </div>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-6">100% Sécurisé</h3>
+                <p class="text-violet-100 leading-relaxed text-lg">
+                    Toutes nos transactions sont sécurisées et nos propriétés vérifiées pour votre tranquillité d'esprit.
+                </p>
+            </div>
+
+            <div class="text-center group">
+                <div class="relative mx-auto mb-8">
+                    <div class="w-24 h-24 bg-gradient-to-br from-white to-violet-200 rounded-3xl flex items-center justify-center mx-auto shadow-2xl group-hover:shadow-white/25 transition-all duration-300 transform group-hover:scale-110 group-hover:-rotate-6">
+                        <i class="fas fa-users text-violet-700 text-4xl"></i>
+                    </div>
+                    <div class="absolute -top-2 -right-2 w-8 h-8 bg-violet-400 rounded-full flex items-center justify-center">
+                        <i class="fas fa-heart text-white text-sm"></i>
+                    </div>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-6">Expertise Locale</h3>
+                <p class="text-violet-100 leading-relaxed text-lg">
+                    Notre équipe connaît parfaitement le marché et vous accompagne à chaque étape de votre projet.
+                </p>
+            </div>
+
+            <div class="text-center group">
+                <div class="relative mx-auto mb-8">
+                    <div class="w-24 h-24 bg-gradient-to-br from-white to-violet-200 rounded-3xl flex items-center justify-center mx-auto shadow-2xl group-hover:shadow-white/25 transition-all duration-300 transform group-hover:scale-110 group-hover:rotate-6">
+                        <i class="fas fa-mobile-alt text-violet-700 text-4xl"></i>
+                    </div>
+                    <div class="absolute -top-2 -right-2 w-8 h-8 bg-violet-300 rounded-full flex items-center justify-center">
+                        <i class="fas fa-star text-white text-sm"></i>
+                    </div>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-6">Technologie Moderne</h3>
+                <p class="text-violet-100 leading-relaxed text-lg">
+                    Plateforme intuitive, recherche avancée et outils modernes pour une expérience optimale.
+                </p>
+            </div>
+
+            <div class="text-center group">
+                <div class="relative mx-auto mb-8">
+                    <div class="w-24 h-24 bg-gradient-to-br from-white to-violet-200 rounded-3xl flex items-center justify-center mx-auto shadow-2xl group-hover:shadow-white/25 transition-all duration-300 transform group-hover:scale-110 group-hover:-rotate-6">
+                        <i class="fas fa-headset text-violet-700 text-4xl"></i>
+                    </div>
+                    <div class="absolute -top-2 -right-2 w-8 h-8 bg-violet-200 rounded-full flex items-center justify-center">
+                        <i class="fas fa-clock text-white text-sm"></i>
+                    </div>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-6">Support 24/7</h3>
+                <p class="text-violet-100 leading-relaxed text-lg">
+                    Notre équipe de support est disponible pour vous aider à tout moment de votre recherche.
+                </p>
+            </div>
+        </div>
+
+        <!-- Additional trust indicators -->
+        <div class="text-center mt-20">
+            <div class="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-3xl px-10 py-6 border border-white/20">
+                <i class="fas fa-award text-white mr-4 text-2xl"></i>
+                <div class="text-left">
+                    <div class="text-white font-bold text-lg">Plateforme certifiée</div>
+                    <div class="text-violet-100 text-sm">Normes de sécurité et de qualité les plus élevées</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- CTA Section -->
+<section class="py-24 bg-gradient-to-br from-white via-gray-100 to-white relative overflow-hidden animate-gradient">
+    <!-- Background decoration -->
+    <div class="absolute inset-0">
+        <div class="absolute top-0 left-0 w-full h-full bg-white/5"></div>
+        <div class="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
+        <div class="absolute bottom-10 right-10 w-40 h-40 bg-white/10 rounded-full blur-xl"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-white/5 rounded-full blur-2xl"></div>
+    </div>
+
+    <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="mb-8">
+            <h2 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                Prêt à trouver votre
+                <span class="block bg-gradient-to-r from-violet-600 to-violet-800 bg-clip-text text-transparent">
+                    nouveau chez-vous ?
+                </span>
+            </h2>
+            <p class="text-xl md:text-2xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed">
+                Rejoignez des milliers de personnes qui ont déjà trouvé leur bonheur sur notre plateforme immobilière
+            </p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <a href="{{ route('properties.index') }}"
+               class="group bg-white text-violet-700 font-bold py-5 px-10 rounded-2xl hover:shadow-2xl hover:shadow-white/25 transform hover:scale-105 transition-all duration-300 flex items-center justify-center min-w-[200px]">
+                <i class="fas fa-search mr-3 text-lg group-hover:animate-pulse"></i>
+                <span class="text-lg">Commencer ma recherche</span>
+            </a>
+            <a href="{{ route('register') }}"
+               class="group bg-transparent border-2 border-white text-white font-bold py-5 px-10 rounded-2xl hover:bg-white hover:text-violet-700 hover:shadow-2xl hover:shadow-white/25 transform hover:scale-105 transition-all duration-300 flex items-center justify-center min-w-[200px]">
+                <i class="fas fa-user-plus mr-3 text-lg group-hover:animate-pulse"></i>
+                <span class="text-lg">Créer mon compte</span>
+            </a>
+        </div>
+
+        <!-- Additional features highlight -->
+        <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div class="bg-gray-100/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200">
+                <div class="w-12 h-12 bg-violet-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-shield-alt text-white text-xl"></i>
+                </div>
+                <h3 class="text-gray-900 font-bold text-lg mb-2">Sécurisé</h3>
+                <p class="text-gray-600 text-sm">Transactions sécurisées et vérifiées</p>
+            </div>
+            <div class="bg-gray-100/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200">
+                <div class="w-12 h-12 bg-violet-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-clock text-white text-xl"></i>
+                </div>
+                <h3 class="text-gray-900 font-bold text-lg mb-2">Rapide</h3>
+                <p class="text-gray-600 text-sm">Résultats instantanés en quelques clics</p>
+            </div>
+            <div class="bg-gray-100/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200">
+                <div class="w-12 h-12 bg-violet-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-users text-white text-xl"></i>
+                </div>
+                <h3 class="text-gray-900 font-bold text-lg mb-2">Communauté</h3>
+                <p class="text-gray-600 text-sm">Rejoignez notre communauté active</p>
+            </div>
+        </div>
+    </div>
+</section>
+@endsection
+
+@push('styles')
+    @vite('resources/css/home.css')
+<style>
+    @keyframes fade-in-up {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .animate-fade-in-up {
+        animation: fade-in-up 1s ease-out;
+    }
+    
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-20px);
+        }
+    }
+    
+    @keyframes float-delayed {
+        0%, 100% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-15px);
+        }
+    }
+    
+    .animate-float {
+        animation: float 6s ease-in-out infinite;
+    }
+    
+    .animate-float-delayed {
+        animation: float-delayed 6s ease-in-out infinite 2s;
+    }
+    
+    .search-form-container {
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.95);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    .animate-gradient {
+        background-size: 200% 200%;
+        animation: gradient 8s ease infinite;
+    }
+</style>
+@endpush
+
+@push('scripts')
+    @vite('resources/js/home.js')
+@endpush

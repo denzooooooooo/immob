@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Villes - Carre Premium')
-@section('description', 'Explorez les opportunités immobilières dans toutes les villes du Gabon.')
+@section('description', 'Explorez les opportunités immobilières dans toutes les villes du Côte d'Ivoire.')
 
 @section('content')
 <!-- Hero Section -->

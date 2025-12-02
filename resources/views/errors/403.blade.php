@@ -16,15 +16,15 @@
                 
                 <!-- Icône de cadenas au centre -->
                 <div class="absolute inset-0 flex items-center justify-center">
-                    <div class="w-24 h-24 bg-gradient-to-r from-red-500 to-gabon-blue rounded-full flex items-center justify-center animate-pulse">
+                    <div class="w-24 h-24 bg-gradient-to-r from-red-500 to-violet-600 rounded-full flex items-center justify-center animate-pulse">
                         <i class="fas fa-lock text-white text-3xl"></i>
                     </div>
                 </div>
                 
                 <!-- Éléments décoratifs -->
                 <div class="absolute top-1/4 left-1/4 w-8 h-8 bg-red-400 rounded-full animate-bounce opacity-60"></div>
-                <div class="absolute top-1/3 right-1/4 w-6 h-6 bg-gabon-blue rounded-full animate-pulse opacity-40"></div>
-                <div class="absolute bottom-1/4 left-1/3 w-10 h-10 bg-gabon-green rounded-full animate-ping opacity-50"></div>
+                <div class="absolute top-1/3 right-1/4 w-6 h-6 bg-violet-600 rounded-full animate-pulse opacity-40"></div>
+                <div class="absolute bottom-1/4 left-1/3 w-10 h-10 bg-violet-600 rounded-full animate-ping opacity-50"></div>
             </div>
         </div>
         
@@ -46,33 +46,33 @@
             @auth
                 @if(auth()->user()->role === 'admin')
                     <a href="{{ route('admin.dashboard') }}" 
-                       class="bg-gradient-to-r from-gabon-green to-gabon-blue text-white font-bold py-4 px-8 rounded-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center justify-center">
+                       class="bg-gradient-to-r from-violet-600 to-violet-600 text-white font-bold py-4 px-8 rounded-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center justify-center">
                         <i class="fas fa-tachometer-alt mr-2"></i>
                         Tableau de bord Admin
                     </a>
                 @elseif(auth()->user()->role === 'agent')
                     <a href="{{ route('agent.dashboard') }}" 
-                       class="bg-gradient-to-r from-gabon-green to-gabon-blue text-white font-bold py-4 px-8 rounded-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center justify-center">
+                       class="bg-gradient-to-r from-violet-600 to-violet-600 text-white font-bold py-4 px-8 rounded-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center justify-center">
                         <i class="fas fa-tachometer-alt mr-2"></i>
                         Tableau de bord Agent
                     </a>
                 @else
                     <a href="{{ route('home') }}" 
-                       class="bg-gradient-to-r from-gabon-green to-gabon-blue text-white font-bold py-4 px-8 rounded-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center justify-center">
+                       class="bg-gradient-to-r from-violet-600 to-violet-600 text-white font-bold py-4 px-8 rounded-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center justify-center">
                         <i class="fas fa-home mr-2"></i>
                         Retour à l'accueil
                     </a>
                 @endif
             @else
                 <a href="{{ route('login') }}" 
-                   class="bg-gradient-to-r from-gabon-green to-gabon-blue text-white font-bold py-4 px-8 rounded-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center justify-center">
+                   class="bg-gradient-to-r from-violet-600 to-violet-600 text-white font-bold py-4 px-8 rounded-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center justify-center">
                     <i class="fas fa-sign-in-alt mr-2"></i>
                     Se connecter
                 </a>
             @endauth
             
             <a href="{{ route('home') }}" 
-               class="bg-white border-2 border-gabon-blue text-gabon-blue font-bold py-4 px-8 rounded-lg hover:bg-gabon-blue hover:text-white transform hover:scale-105 transition-all duration-200 flex items-center justify-center">
+               class="bg-white border-2 border-violet-600 text-violet-600 font-bold py-4 px-8 rounded-lg hover:bg-violet-600 hover:text-white transform hover:scale-105 transition-all duration-200 flex items-center justify-center">
                 <i class="fas fa-home mr-2"></i>
                 Accueil
             </a>
@@ -92,7 +92,7 @@
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="text-center">
-                    <div class="w-16 h-16 bg-gradient-to-r from-gabon-green to-gabon-blue rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div class="w-16 h-16 bg-gradient-to-r from-violet-600 to-violet-600 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-user text-white text-2xl"></i>
                     </div>
                     <h4 class="font-semibold text-gray-900 mb-2">Client</h4>
@@ -102,7 +102,7 @@
                 </div>
                 
                 <div class="text-center">
-                    <div class="w-16 h-16 bg-gradient-to-r from-gabon-blue to-gabon-yellow rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div class="w-16 h-16 bg-gradient-to-r from-violet-600 to-violet-400 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-user-tie text-white text-2xl"></i>
                     </div>
                     <h4 class="font-semibold text-gray-900 mb-2">Agent</h4>
@@ -112,7 +112,7 @@
                 </div>
                 
                 <div class="text-center">
-                    <div class="w-16 h-16 bg-gradient-to-r from-gabon-yellow to-gabon-green rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div class="w-16 h-16 bg-gradient-to-r from-violet-400 to-violet-600 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-crown text-white text-2xl"></i>
                     </div>
                     <h4 class="font-semibold text-gray-900 mb-2">Admin</h4>
@@ -125,7 +125,7 @@
             <div class="mt-8 pt-6 border-t border-gray-200">
                 <p class="text-gray-500 text-sm">
                     Pour obtenir des privilèges supplémentaires, contactez-nous à 
-                    <a href="mailto:admin@monnkama.ga" class="text-gabon-blue hover:underline">
+                    <a href="mailto:admin@monnkama.ga" class="text-violet-600 hover:underline">
                         admin@monnkama.ga
                     </a>
                 </p>
@@ -140,19 +140,19 @@
             
             <div class="flex justify-center space-x-6">
                 <a href="mailto:support@monnkama.ga" 
-                   class="text-gray-600 hover:text-gabon-blue transition-colors duration-200 flex items-center">
+                   class="text-gray-600 hover:text-violet-600 transition-colors duration-200 flex items-center">
                     <i class="fas fa-envelope mr-2"></i>
                     Support par email
                 </a>
                 
                 <a href="tel:+24106052263" 
-                   class="text-gray-600 hover:text-gabon-blue transition-colors duration-200 flex items-center">
+                   class="text-gray-600 hover:text-violet-600 transition-colors duration-200 flex items-center">
                     <i class="fas fa-phone mr-2"></i>
                     +241 06 05 22 63
                 </a>
                 
                 <a href="{{ route('contact') }}" 
-                   class="text-gray-600 hover:text-gabon-blue transition-colors duration-200 flex items-center">
+                   class="text-gray-600 hover:text-violet-600 transition-colors duration-200 flex items-center">
                     <i class="fas fa-comment mr-2"></i>
                     Formulaire de contact
                 </a>

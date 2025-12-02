@@ -12,7 +12,7 @@
     <!-- Decorative elements -->
     <div class="absolute inset-0">
         <div class="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full animate-pulse"></div>
-        <div class="absolute top-40 right-20 w-24 h-24 bg-gabon-yellow/20 rounded-full animate-bounce"></div>
+        <div class="absolute top-40 right-20 w-24 h-24 bg-violet-400/20 rounded-full animate-bounce"></div>
         <div class="absolute bottom-20 left-1/4 w-40 h-40 bg-white/5 rounded-full animate-pulse"></div>
     </div>
     
@@ -39,7 +39,7 @@
                 </h2>
                 
                 @if(session('success'))
-                    <div class="bg-gabon-green/10 border border-gabon-green/20 text-gabon-green px-4 py-3 rounded-lg mb-6">
+                    <div class="bg-violet-600/10 border border-violet-600/20 text-violet-600 px-4 py-3 rounded-lg mb-6">
                         <div class="flex items-center">
                             <i class="fas fa-check-circle mr-2"></i>
                             {{ session('success') }}
@@ -60,7 +60,7 @@
                                    name="name" 
                                    value="{{ old('name') }}"
                                    required
-                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gabon-green focus:border-transparent transition-all duration-200 @error('name') border-red-500 @enderror">
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all duration-200 @error('name') border-red-500 @enderror">
                             @error('name')
                                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
@@ -75,7 +75,7 @@
                                    name="email" 
                                    value="{{ old('email') }}"
                                    required
-                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gabon-green focus:border-transparent transition-all duration-200 @error('email') border-red-500 @enderror">
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all duration-200 @error('email') border-red-500 @enderror">
                             @error('email')
                                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
@@ -91,7 +91,7 @@
                                name="subject" 
                                value="{{ old('subject') }}"
                                required
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gabon-green focus:border-transparent transition-all duration-200 @error('subject') border-red-500 @enderror">
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all duration-200 @error('subject') border-red-500 @enderror">
                         @error('subject')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
@@ -105,7 +105,7 @@
                                   name="message" 
                                   rows="6" 
                                   required
-                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gabon-green focus:border-transparent transition-all duration-200 resize-none @error('message') border-red-500 @enderror">{{ old('message') }}</textarea>
+                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all duration-200 resize-none @error('message') border-red-500 @enderror">{{ old('message') }}</textarea>
                         @error('message')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
@@ -127,7 +127,7 @@
                     
                     <div class="space-y-6">
                         <div class="flex items-start">
-                            <div class="w-12 h-12 bg-gabon-yellow rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                            <div class="w-12 h-12 bg-violet-400 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
                                 <i class="fas fa-map-marker-alt text-gray-900"></i>
                             </div>
                             <div>
@@ -141,7 +141,7 @@
                         </div>
                         
                         <div class="flex items-start">
-                            <div class="w-12 h-12 bg-gabon-yellow rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                            <div class="w-12 h-12 bg-violet-400 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
                                 <i class="fas fa-phone text-gray-900"></i>
                             </div>
                             <div>
@@ -152,7 +152,7 @@
                         </div>
                         
                         <div class="flex items-start">
-                            <div class="w-12 h-12 bg-gabon-yellow rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                            <div class="w-12 h-12 bg-violet-400 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
                                 <i class="fas fa-envelope text-gray-900"></i>
                             </div>
                             <div>
@@ -163,7 +163,7 @@
                         </div>
                         
                         <div class="flex items-start">
-                            <div class="w-12 h-12 bg-gabon-yellow rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                            <div class="w-12 h-12 bg-violet-400 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
                                 <i class="fas fa-clock text-gray-900"></i>
                             </div>
                             <div>
@@ -240,7 +240,7 @@
                     <h3 class="text-lg font-semibold text-gray-900">
                         Comment publier une propriété sur Carre Premium Immo ?
                     </h3>
-                    <i class="fas fa-chevron-down text-gabon-blue transform transition-transform duration-200"></i>
+                    <i class="fas fa-chevron-down text-violet-600 transform transition-transform duration-200"></i>
                 </button>
                 <div class="faq-content hidden mt-4 text-gray-600">
                     <p>Pour publier une propriété, vous devez d'abord créer un compte agent ou propriétaire. Une fois connecté, utilisez notre interface simple pour ajouter les détails, photos et informations de votre bien. Notre équipe vérifie chaque annonce avant publication.</p>
@@ -252,7 +252,7 @@
                     <h3 class="text-lg font-semibold text-gray-900">
                         Quels sont les frais pour utiliser Carre Premium Immo ?
                     </h3>
-                    <i class="fas fa-chevron-down text-gabon-blue transform transition-transform duration-200"></i>
+                    <i class="fas fa-chevron-down text-violet-600 transform transition-transform duration-200"></i>
                 </button>
                 <div class="faq-content hidden mt-4 text-gray-600">
                     <p>La recherche et la consultation des propriétés sont entièrement gratuites. Pour les propriétaires et agents, nous proposons différents plans d'abonnement selon vos besoins. Contactez-nous pour plus de détails sur nos tarifs.</p>
@@ -264,7 +264,7 @@
                     <h3 class="text-lg font-semibold text-gray-900">
                         Comment vérifiez-vous les propriétés listées ?
                     </h3>
-                    <i class="fas fa-chevron-down text-gabon-blue transform transition-transform duration-200"></i>
+                    <i class="fas fa-chevron-down text-violet-600 transform transition-transform duration-200"></i>
                 </button>
                 <div class="faq-content hidden mt-4 text-gray-600">
                     <p>Chaque propriété est vérifiée par notre équipe. Nous contrôlons les documents de propriété, visitons les biens quand c'est possible, et vérifions l'identité des propriétaires. Nous nous réservons le droit de refuser toute annonce suspecte.</p>
@@ -276,7 +276,7 @@
                     <h3 class="text-lg font-semibold text-gray-900">
                         Puis-je modifier ou supprimer mon annonce ?
                     </h3>
-                    <i class="fas fa-chevron-down text-gabon-blue transform transition-transform duration-200"></i>
+                    <i class="fas fa-chevron-down text-violet-600 transform transition-transform duration-200"></i>
                 </button>
                 <div class="faq-content hidden mt-4 text-gray-600">
                     <p>Oui, vous pouvez modifier ou supprimer vos annonces à tout moment depuis votre tableau de bord. Les modifications importantes peuvent nécessiter une nouvelle vérification de notre part.</p>
@@ -287,7 +287,7 @@
 </section>
 
 <!-- CTA Section -->
-<section class="py-16 bg-gradient-to-r from-gabon-green to-gabon-blue text-white">
+<section class="py-16 bg-gradient-to-r from-violet-600 to-violet-600 text-white">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 class="text-3xl md:text-4xl font-bold mb-6">
             Besoin d'aide immédiate ?

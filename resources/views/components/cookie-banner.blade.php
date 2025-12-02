@@ -17,11 +17,11 @@
                     </p>
                 </div>
                 <div class="flex gap-4">
-                    <a href="{{ route('privacy') }}" class="text-gabon-blue hover:text-gabon-blue-dark transition-colors duration-200">
+                    <a href="{{ route('privacy') }}" class="text-violet-600 hover:text-violet-600-dark transition-colors duration-200">
                         En savoir plus
                     </a>
                     <button @click="localStorage.setItem('cookie-consent', '1'); show = false" 
-                            class="bg-gabon-green hover:bg-gabon-green-dark text-white font-semibold px-6 py-2 rounded-lg transition-colors duration-200">
+                            class="bg-violet-600 hover:bg-violet-600-dark text-white font-semibold px-6 py-2 rounded-lg transition-colors duration-200">
                         Accepter
                     </button>
                 </div>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Recherche avancée - Monnkama')
-@section('description', 'Recherchez votre bien immobilier idéal au Gabon avec nos filtres avancés.')
+@section('description', 'Recherchez votre bien immobilier idéal au Côte d'Ivoire avec nos filtres avancés.')
 
 @section('content')
 <div class="min-h-screen bg-gradient-to-br from-white via-violet-50/30 to-white py-12">
@@ -252,24 +252,24 @@
                                     <i class="fas fa-home text-4xl text-gray-400"></i>
                                 </div>
                             @endif
-                            <div class="absolute top-4 left-4 bg-gabon-green text-white px-3 py-1 rounded-full text-sm">
+                            <div class="absolute top-4 left-4 bg-violet-600 text-white px-3 py-1 rounded-full text-sm">
                                 {{ $property->type === 'for_sale' ? 'À vendre' : 'À louer' }}
                             </div>
                             @if($property->featured)
-                                <div class="absolute top-4 right-4 bg-gabon-yellow text-gray-900 px-3 py-1 rounded-full text-sm">
+                                <div class="absolute top-4 right-4 bg-violet-400 text-gray-900 px-3 py-1 rounded-full text-sm">
                                     <i class="fas fa-star mr-1"></i> Premium
                                 </div>
                             @endif
                         </a>
                         <div class="p-4">
                             <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                                <a href="{{ route('properties.show', $property) }}" class="hover:text-gabon-green">
+                                <a href="{{ route('properties.show', $property) }}" class="hover:text-violet-600">
                                     {{ $property->title }}
                                 </a>
                             </h3>
                             <p class="text-gray-600 mb-4">{{ Str::limit($property->description, 100) }}</p>
                             <div class="flex items-center justify-between mb-4">
-                                <span class="text-2xl font-bold text-gabon-green">{{ $property->formatted_price }}</span>
+                                <span class="text-2xl font-bold text-violet-600">{{ $property->formatted_price }}</span>
                                 <span class="text-gray-600">{{ $property->formatted_surface }}</span>
                             </div>
                             <div class="flex items-center text-gray-600 text-sm">
