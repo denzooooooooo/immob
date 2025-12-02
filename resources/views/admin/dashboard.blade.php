@@ -13,7 +13,7 @@
                 <i class="fas fa-building text-violet-600 text-2xl"></i>
             </div>
             <div class="ml-4">
-                <p class="text-sm text-gray-500 uppercase">Propriétés</p>
+                <p class="text-sm text-gray-500 uppercase">Propriété</p>
                 <p class="text-2xl font-semibold text-gray-700">{{ $stats['total_properties'] }}</p>
             </div>
         </div>
