@@ -18,6 +18,8 @@ use App\Http\Controllers\Api\V1\LocationApiController;
 |
 */
 
+// Note: These routes are prefixed with /api by default.
+
 // API V1 Routes
 Route::prefix('v1')->group(function () {
     // Auth Routes
