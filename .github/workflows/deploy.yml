@@ -1,0 +1,59 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy to Production Server
+    runs-on: ubuntu-latest
+    env:
+      SSH_USER: ${{ secrets.SSH_USER }}
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_PORT: ${{ secrets.SSH_PORT }}
+
+    steps:
+      # 1️⃣ Récupération du code
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      # 2️⃣ Configuration de la clé privée SSH
+      - name: Set up SSH key
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      # 3️⃣ Ajout de l'hôte au known_hosts
+      - name: Add server to known hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -p $SSH_PORT -H $SSH_HOST >> ~/.ssh/known_hosts
+
+      # 4️⃣ Déploiement
+      - name: Deploy via SSH
+        run: |
+          ssh -p $SSH_PORT $SSH_USER@$SSH_HOST << 'EOF'
+            cd 	/home/u608034730/domains/monnkama.shop/public_html/immob/
+
+            echo "🌀 Mise à jour du dépôt..."
+            git fetch origin main
+            git reset --hard origin/main
+
+            echo "📦 Installation des dépendances..."
+            composer install 
+  
+            echo "⚙️ Optimisation Laravel..."
+            php artisan optimize:clear
+
+            npm install
+
+            echo "npm run build"
+            
+            php artisan optimize
+            php artisan migrate 
+
+            echo "✅ Déploiement terminé avec succès !"
+          EOF
+
