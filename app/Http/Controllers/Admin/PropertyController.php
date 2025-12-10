@@ -161,7 +161,7 @@ class PropertyController extends Controller
                     
                     $property->media()->create([
                         'type' => 'image',
-                        'path' => $path,
+                        'path' => 'storage/' . $path,
                         'title' => $image->getClientOriginalName(),
                         'thumbnail_path' => null,
                         'order' => $index,
@@ -179,7 +179,7 @@ class PropertyController extends Controller
                     
                     $property->media()->create([
                         'type' => 'video',
-                        'path' => $path,
+                        'path' => 'storage/' . $path,
                         'title' => $video->getClientOriginalName(),
                         'order' => $index,
                         'mime_type' => $video->getMimeType(),
@@ -309,7 +309,7 @@ class PropertyController extends Controller
                     
                     $property->media()->create([
                         'type' => 'image',
-                        'path' => $path,
+                        'path' => 'storage/' . $path,
                         'title' => $image->getClientOriginalName(),
                         'thumbnail_path' => null,
                         'order' => $currentMediaCount + $index,
@@ -328,7 +328,7 @@ class PropertyController extends Controller
                     
                     $property->media()->create([
                         'type' => 'video',
-                        'path' => $path,
+                        'path' => 'storage/' . $path,
                         'title' => $video->getClientOriginalName(),
                         'order' => $currentMediaCount + $index,
                         'mime_type' => $video->getMimeType(),

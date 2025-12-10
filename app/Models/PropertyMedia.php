@@ -64,7 +64,8 @@ class PropertyMedia extends Model
     // Accessors
     public function getUrlAttribute()
     {
-        return Storage::url($this->path);
+        // Le chemin est déjà complet avec 'storage/' au début
+        return '/' . $this->path;
     }
 
     public function getThumbnailUrlAttribute()

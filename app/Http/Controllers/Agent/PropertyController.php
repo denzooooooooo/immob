@@ -132,7 +132,7 @@ class PropertyController extends Controller
                 
                 $property->media()->create([
                     'type' => 'image',
-                    'path' => Storage::url($path),
+                    'path' => 'storage/' . $path,
                     'title' => $image->getClientOriginalName(),
                     'order' => $index + 1,
                     'is_featured' => $index === 0, // Première image = featured
@@ -235,7 +235,7 @@ class PropertyController extends Controller
                 
                 $property->media()->create([
                     'type' => 'image',
-                    'path' => Storage::url($path),
+                    'path' => 'storage/' . $path,
                     'title' => $image->getClientOriginalName(),
                     'order' => $currentImagesCount + $index + 1,
                     'is_featured' => $currentImagesCount === 0 && $index === 0,
