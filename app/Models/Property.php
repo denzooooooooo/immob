@@ -9,10 +9,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Property extends Model
+class Property extends Model implements HasMedia
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, InteractsWithMedia;
 
     protected $fillable = [
         'user_id',
@@ -103,7 +105,8 @@ class Property extends Model
         return $this->hasOne(PropertyDetail::class);
     }
 
-    public function media(): HasMany
+    // Spatie Media Library - Ancienne relation media() conservée pour compatibilité
+    public function propertyMedia(): HasMany
     {
         return $this->hasMany(PropertyMedia::class)->orderBy('order');
     }
@@ -113,14 +116,30 @@ class Property extends Model
         return $this->hasOne(PropertyMedia::class)->where('is_featured', true);
     }
 
-    public function images(): HasMany
+    // Méthodes helper pour Spatie Media Library
+    public function getImagesAttribute()
     {
-        return $this->hasMany(PropertyMedia::class)->where('type', 'image');
+        return $this->getMedia('images');
     }
 
-    public function videos(): HasMany
+    public function getVideosAttribute()
     {
-        return $this->hasMany(PropertyMedia::class)->where('type', 'video');
+        return $this->getMedia('videos');
+    }
+
+    public function getFirstImageUrlAttribute()
+    {
+        return $this->getFirstMediaUrl('images');
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('images')
+            ->useFallbackUrl('/images/placeholder.jpg')
+            ->useFallbackPath(public_path('/images/placeholder.jpg'));
+
+        $this->addMediaCollection('videos')
+            ->useFallbackUrl('/images/video-placeholder.jpg');
     }
 
     public function views(): HasMany

@@ -154,37 +154,24 @@ class PropertyController extends Controller
                 'terrace' => $validated['terrace'] ?? false,
             ]);
 
-            // Gérer les images
+            // Gérer les images avec Spatie Media Library
             if ($request->hasFile('images')) {
                 foreach ($request->file('images') as $index => $image) {
-                    $path = $image->store('properties/images', 'public');
-                    
-                    $property->media()->create([
-                        'type' => 'image',
-                        'path' => 'storage/' . $path,
-                        'title' => $image->getClientOriginalName(),
-                        'thumbnail_path' => null,
-                        'order' => $index,
-                        'is_featured' => $index === 0,
-                        'mime_type' => $image->getMimeType(),
-                        'size' => $image->getSize(),
-                    ]);
+                    $property->addMedia($image)
+                        ->withCustomProperties([
+                            'order' => $index,
+                            'is_featured' => $index === 0
+                        ])
+                        ->toMediaCollection('images');
                 }
             }
 
-            // Gérer les vidéos
+            // Gérer les vidéos avec Spatie Media Library
             if ($request->hasFile('videos')) {
                 foreach ($request->file('videos') as $index => $video) {
-                    $path = $video->store('properties/videos', 'public');
-                    
-                    $property->media()->create([
-                        'type' => 'video',
-                        'path' => 'storage/' . $path,
-                        'title' => $video->getClientOriginalName(),
-                        'order' => $index,
-                        'mime_type' => $video->getMimeType(),
-                        'size' => $video->getSize(),
-                    ]);
+                    $property->addMedia($video)
+                        ->withCustomProperties(['order' => $index])
+                        ->toMediaCollection('videos');
                 }
             }
 
@@ -286,63 +273,47 @@ class PropertyController extends Controller
                 'terrace' => $validated['terrace'] ?? false,
             ]);
 
-            // Supprimer les médias sélectionnés
+            // Supprimer les médias sélectionnés (Spatie)
             if ($request->has('delete_media')) {
-                $mediaToDelete = PropertyMedia::whereIn('id', $request->delete_media)
-                    ->where('property_id', $property->id)
-                    ->get();
-
-                foreach ($mediaToDelete as $media) {
-                    Storage::delete('public/' . $media->path);
-                    if ($media->thumbnail_path) {
-                        Storage::delete('public/' . $media->thumbnail_path);
+                foreach ($request->delete_media as $mediaId) {
+                    $media = $property->media()->find($mediaId);
+                    if ($media) {
+                        $media->delete();
                     }
-                    $media->delete();
                 }
             }
 
-            // Ajouter de nouvelles images
+            // Ajouter de nouvelles images (Spatie)
             if ($request->hasFile('new_images')) {
-                $currentMediaCount = $property->media()->count();
+                $currentMediaCount = $property->getMedia('images')->count();
                 foreach ($request->file('new_images') as $index => $image) {
-                    $path = $image->store('properties/images', 'public');
-                    
-                    $property->media()->create([
-                        'type' => 'image',
-                        'path' => 'storage/' . $path,
-                        'title' => $image->getClientOriginalName(),
-                        'thumbnail_path' => null,
-                        'order' => $currentMediaCount + $index,
-                        'is_featured' => false,
-                        'mime_type' => $image->getMimeType(),
-                        'size' => $image->getSize(),
-                    ]);
+                    $property->addMedia($image)
+                        ->withCustomProperties([
+                            'order' => $currentMediaCount + $index,
+                            'is_featured' => false
+                        ])
+                        ->toMediaCollection('images');
                 }
             }
 
-            // Ajouter de nouvelles vidéos
+            // Ajouter de nouvelles vidéos (Spatie)
             if ($request->hasFile('new_videos')) {
-                $currentMediaCount = $property->media()->count();
+                $currentMediaCount = $property->getMedia('videos')->count();
                 foreach ($request->file('new_videos') as $index => $video) {
-                    $path = $video->store('properties/videos', 'public');
-                    
-                    $property->media()->create([
-                        'type' => 'video',
-                        'path' => 'storage/' . $path,
-                        'title' => $video->getClientOriginalName(),
-                        'order' => $currentMediaCount + $index,
-                        'mime_type' => $video->getMimeType(),
-                        'size' => $video->getSize(),
-                    ]);
+                    $property->addMedia($video)
+                        ->withCustomProperties(['order' => $currentMediaCount + $index])
+                        ->toMediaCollection('videos');
                 }
             }
 
-            // Mettre à jour l'ordre des médias
+            // Mettre à jour l'ordre des médias (Spatie)
             if ($request->has('media_order')) {
                 foreach ($request->media_order as $id => $order) {
-                    PropertyMedia::where('id', $id)
-                        ->where('property_id', $property->id)
-                        ->update(['order' => $order]);
+                    $media = $property->media()->find($id);
+                    if ($media) {
+                        $media->setCustomProperty('order', $order);
+                        $media->save();
+                    }
                 }
             }
 
@@ -365,13 +336,9 @@ class PropertyController extends Controller
         DB::beginTransaction();
 
         try {
-            // Supprimer les médias
-            foreach ($property->media as $media) {
-                Storage::delete('public/' . $media->path);
-                if ($media->thumbnail_path) {
-                    Storage::delete('public/' . $media->thumbnail_path);
-                }
-            }
+            // Supprimer tous les médias Spatie
+            $property->clearMediaCollection('images');
+            $property->clearMediaCollection('videos');
 
             // Supprimer la propriété (les relations seront supprimées automatiquement)
             $property->delete();
@@ -416,12 +383,9 @@ class PropertyController extends Controller
             switch ($validated['action']) {
                 case 'delete':
                     foreach (Property::whereIn('id', $validated['properties'])->get() as $property) {
-                        foreach ($property->media as $media) {
-                            Storage::delete('public/' . $media->path);
-                            if ($media->thumbnail_path) {
-                                Storage::delete('public/' . $media->thumbnail_path);
-                            }
-                        }
+                        // Supprimer les médias Spatie
+                        $property->clearMediaCollection('images');
+                        $property->clearMediaCollection('videos');
                         $property->delete();
                         $count++;
                     }
