@@ -270,7 +270,7 @@ php artisan view:cache
 ### Données Utilisateurs (Contenu)
 ❌ **PAS sur Git** → Créées directement en production par les utilisateurs
 
----
+--- v
 
 ## 📝 Checklist de Déploiement
 
