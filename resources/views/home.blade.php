@@ -337,33 +337,33 @@
             </p>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             @foreach($cities->take(8) as $city)
                 <a href="{{ route('city', $city->slug) }}"
-                   class="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-violet-600 via-violet-700 to-violet-800 p-8 text-white hover:shadow-2xl hover:shadow-violet-500/25 transform hover:scale-105 hover:-translate-y-2 transition-all duration-500 border border-violet-400/20">
+                   class="group relative overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-to-br from-violet-600 via-violet-700 to-violet-800 p-6 sm:p-8 text-white hover:shadow-2xl hover:shadow-violet-500/25 transform hover:scale-105 hover:-translate-y-2 transition-all duration-500 border border-violet-400/20">
                     <div class="relative z-10">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-2xl font-bold">{{ $city->name }}</h3>
-                            <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors duration-300">
-                                <i class="fas fa-map-marker-alt text-sm"></i>
+                        <div class="flex items-center justify-between mb-3 sm:mb-4">
+                            <h3 class="text-xl sm:text-2xl font-bold truncate pr-2">{{ $city->name }}</h3>
+                            <div class="w-8 h-8 flex-shrink-0 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors duration-300">
+                                <i class="fas fa-map-marker-alt text-xs sm:text-sm"></i>
                             </div>
                         </div>
-                        <div class="flex items-center justify-between">
-                            <p class="text-violet-100 font-semibold text-lg">{{ $city->properties_count ?? 0 }} propriétés</p>
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0">
+                            <p class="text-violet-100 font-semibold text-base sm:text-lg">{{ $city->properties_count ?? 0 }} propriétés</p>
                             <div class="flex text-violet-200">
-                                <i class="fas fa-star text-sm"></i>
-                                <i class="fas fa-star text-sm ml-1"></i>
-                                <i class="fas fa-star text-sm ml-1"></i>
+                                <i class="fas fa-star text-xs sm:text-sm"></i>
+                                <i class="fas fa-star text-xs sm:text-sm ml-1"></i>
+                                <i class="fas fa-star text-xs sm:text-sm ml-1"></i>
                             </div>
                         </div>
                     </div>
 
                     <!-- Decorative elements -->
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12 group-hover:scale-150 group-hover:bg-white/20 transition-all duration-500"></div>
-                    <div class="absolute bottom-0 left-0 w-20 h-20 bg-violet-300/20 rounded-full -ml-10 -mb-10 group-hover:scale-125 group-hover:bg-violet-300/30 transition-all duration-500"></div>
+                    <div class="absolute top-0 right-0 w-20 sm:w-24 h-20 sm:h-24 bg-white/10 rounded-full -mr-10 sm:-mr-12 -mt-10 sm:-mt-12 group-hover:scale-150 group-hover:bg-white/20 transition-all duration-500"></div>
+                    <div class="absolute bottom-0 left-0 w-16 sm:w-20 h-16 sm:h-20 bg-violet-300/20 rounded-full -ml-8 sm:-ml-10 -mb-8 sm:-mb-10 group-hover:scale-125 group-hover:bg-violet-300/30 transition-all duration-500"></div>
 
                     <!-- Hover overlay -->
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl sm:rounded-3xl"></div>
                 </a>
             @endforeach
         </div>
