@@ -259,7 +259,7 @@ php artisan view:cache
 
 ---
 
-## 🔐 Gestion des Données
+## 🔐 Gestion des Données   s
 
 ### Données de Structure (Migrations)
 ✅ **Poussées sur Git** → Exécutées sur Hostinger avec `php artisan migrate`
