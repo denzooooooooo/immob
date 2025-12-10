@@ -64,6 +64,15 @@ class PropertyMedia extends Model
     // Accessors
     public function getUrlAttribute()
     {
+        // DEBUG: Log pour voir ce qui se passe
+        \Log::info('PropertyMedia getUrlAttribute', [
+            'original_path' => $this->path,
+            'cleaned_path' => str_replace('storage/', '', $this->path),
+            'final_url' => '/storage/' . str_replace('storage/', '', $this->path),
+            'file_exists' => file_exists(public_path('storage/' . str_replace('storage/', '', $this->path))),
+            'full_path' => public_path('storage/' . str_replace('storage/', '', $this->path)),
+        ]);
+        
         // Retourner directement le chemin avec /storage/ au début
         return '/storage/' . str_replace('storage/', '', $this->path);
     }
