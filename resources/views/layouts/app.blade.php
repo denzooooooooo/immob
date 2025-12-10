@@ -160,6 +160,54 @@
             visibility: visible;
         }
         
+        /* Mobile Menu Styles */
+        .mobile-menu-overlay {
+            backdrop-filter: blur(8px);
+            background-color: rgba(0, 0, 0, 0.5);
+            transition: opacity 0.3s ease-in-out;
+        }
+        
+        .mobile-menu-overlay.show {
+            opacity: 1;
+        }
+        
+        .mobile-menu-container {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .mobile-menu-container.open {
+            transform: translateX(0);
+        }
+        
+        /* Hamburger Animation */
+        .hamburger-line {
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+        
+        /* Mobile Dropdown */
+        .mobile-dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+        }
+        
+        .mobile-dropdown-content.open {
+            max-height: 500px;
+        }
+        
         /* Floating animations for hero section */
         @keyframes float {
             0%, 100% {
@@ -240,31 +288,44 @@
                 background-position: -200% 0;
             }
         }
+
+        /* Prevent body scroll when mobile menu is open */
+        body.mobile-menu-open {
+            overflow: hidden;
+        }
     </style>
     
     @stack('styles')
 </head>
 <body class="font-sans bg-gray-50">
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-overlay" class="mobile-menu-overlay fixed inset-0 z-40 hidden" onclick="closeMobileMenu()"></div>
+
     <!-- Navigation -->
     <nav class="bg-white/95 backdrop-blur-lg shadow-lg sticky top-0 z-50 border-b border-white/20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
+            <div class="flex justify-between items-center h-16 sm:h-20">
                 <!-- Logo -->
-                <div class="flex items-center">
-                    <a href="{{ route('home') }}" class="flex items-center space-x-3 group">
-                        <div class="w-12 h-12 bg-gradient-to-br from-violet-600 to-violet-800 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300">
-                            <i class="fas fa-home text-white text-xl"></i>
+                <div class="flex items-center flex-shrink-0">
+                    <a href="{{ route('home') }}" class="flex items-center space-x-2 sm:space-x-3 group">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-violet-600 to-violet-800 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300">
+                            <i class="fas fa-home text-white text-lg sm:text-xl"></i>
                         </div>
-                        <div>
-                            <span class="text-2xl font-bold bg-gradient-to-r from-violet-600 to-violet-800 bg-clip-text text-transparent">
+                        <div class="hidden sm:block">
+                            <span class="text-xl sm:text-2xl font-bold bg-gradient-to-r from-violet-600 to-violet-800 bg-clip-text text-transparent">
                                 Carre Premium
                             </span>
                             <div class="text-xs text-gray-500 -mt-1">Immobilier</div>
                         </div>
+                        <div class="block sm:hidden">
+                            <span class="text-lg font-bold bg-gradient-to-r from-violet-600 to-violet-800 bg-clip-text text-transparent">
+                                Carre
+                            </span>
+                        </div>
                     </a>
                 </div>
 
-                <!-- Navigation Links -->
+                <!-- Desktop Navigation Links -->
                 <div class="hidden lg:flex items-center space-x-1">
                     <a href="{{ route('home') }}" class="nav-link px-4 py-2 rounded-lg text-gray-700 hover:text-violet-600 hover:bg-violet-50 transition-all duration-300 font-medium relative flex items-center">
                         <i class="fas fa-home mr-2 text-sm"></i>
@@ -288,32 +349,34 @@
                     </a>
                 </div>
 
-                <!-- Auth Buttons -->
-                <div class="flex items-center space-x-3">
+                <!-- Desktop Auth Buttons -->
+                <div class="hidden lg:flex items-center space-x-3">
                     @guest
                         <a href="{{ route('login') }}" class="px-4 py-2 rounded-lg text-violet-600 hover:text-violet-700 hover:bg-violet-50 transition-all duration-300 font-medium">
                             <i class="fas fa-sign-in-alt mr-2"></i>
-                            Connexion
+                            <span class="hidden xl:inline">Connexion</span>
+                            <span class="xl:hidden">Login</span>
                         </a>
-                        <a href="{{ route('register') }}" class="bg-gradient-to-r from-violet-600 to-violet-800 text-white px-6 py-2.5 rounded-lg hover:shadow-lg hover:shadow-violet-500/25 transform hover:scale-105 transition-all duration-300 font-medium">
+                        <a href="{{ route('register') }}" class="bg-gradient-to-r from-violet-600 to-violet-800 text-white px-4 xl:px-6 py-2.5 rounded-lg hover:shadow-lg hover:shadow-violet-500/25 transform hover:scale-105 transition-all duration-300 font-medium">
                             <i class="fas fa-user-plus mr-2"></i>
-                            Inscription
+                            <span class="hidden xl:inline">Inscription</span>
+                            <span class="xl:hidden">Sign up</span>
                         </a>
                     @else
-                        <div class="relative group">
-                            <button class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-all duration-300">
+                        <div class="relative dropdown group">
+                            <button class="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-gray-50 transition-all duration-300">
                                 <img src="{{ auth()->user()->avatar ?? 'https://ui-avatars.com/api/?name=' . urlencode(auth()->user()->name) }}"
                                      alt="{{ auth()->user()->name }}"
                                      class="w-8 h-8 rounded-full border-2 border-violet-200">
-                                <span class="font-medium text-gray-700">{{ auth()->user()->name }}</span>
+                                <span class="hidden xl:block font-medium text-gray-700 max-w-[120px] truncate">{{ auth()->user()->name }}</span>
                                 <i class="fas fa-chevron-down text-xs text-gray-500 group-hover:text-violet-600 transition-colors duration-200"></i>
                             </button>
 
-                            <!-- Dropdown Menu -->
-                            <div class="absolute right-0 mt-3 w-56 bg-white/95 backdrop-blur-lg rounded-xl shadow-xl border border-white/20 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                            <!-- Desktop Dropdown Menu -->
+                            <div class="dropdown-menu absolute right-0 mt-3 w-56 bg-white/95 backdrop-blur-lg rounded-xl shadow-xl border border-white/20 py-2">
                                 <div class="px-4 py-3 border-b border-gray-100">
-                                    <p class="text-sm font-medium text-gray-900">{{ auth()->user()->name }}</p>
-                                    <p class="text-xs text-gray-500">{{ auth()->user()->email }}</p>
+                                    <p class="text-sm font-medium text-gray-900 truncate">{{ auth()->user()->name }}</p>
+                                    <p class="text-xs text-gray-500 truncate">{{ auth()->user()->email }}</p>
                                 </div>
                                 <a href="{{ route('profile') }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-violet-50 hover:text-violet-600 transition-all duration-200">
                                     <i class="fas fa-user mr-3 text-sm"></i>
@@ -345,54 +408,130 @@
                             </div>
                         </div>
                     @endguest
+                </div>
 
-                    <!-- Mobile menu button -->
-                    <div class="lg:hidden">
-                        <button id="mobile-menu-button" class="p-2 rounded-lg text-gray-700 hover:text-violet-600 hover:bg-violet-50 transition-all duration-300">
-                            <i class="fas fa-bars text-lg"></i>
-                        </button>
-                    </div>
+                <!-- Mobile menu button -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-button" class="hamburger p-2 rounded-lg text-gray-700 hover:text-violet-600 hover:bg-violet-50 transition-all duration-300" onclick="toggleMobileMenu()">
+                        <div class="w-6 h-5 flex flex-col justify-between">
+                            <span class="hamburger-line w-full h-0.5 bg-current rounded-full"></span>
+                            <span class="hamburger-line w-full h-0.5 bg-current rounded-full"></span>
+                            <span class="hamburger-line w-full h-0.5 bg-current rounded-full"></span>
+                        </div>
+                    </button>
                 </div>
             </div>
         </div>
+    </nav>
 
-        <!-- Mobile Navigation -->
-        <div id="mobile-menu" class="lg:hidden hidden bg-white/95 backdrop-blur-lg border-t border-white/20">
-            <div class="px-4 py-4 space-y-1">
-                <a href="{{ route('home') }}" class="flex flex-col items-center px-4 py-3 rounded-lg text-gray-700 hover:text-violet-600 hover:bg-violet-50 transition-all duration-300">
-                    <i class="fas fa-home text-lg mb-1"></i>
-                    <span class="text-xs">Accueil</span>
+    <!-- Mobile Menu Sidebar -->
+    <div id="mobile-menu" class="mobile-menu-container fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white shadow-2xl z-50 overflow-y-auto">
+        <div class="p-6">
+            <!-- Mobile Menu Header -->
+            <div class="flex items-center justify-between mb-8">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-violet-600 to-violet-800 rounded-xl flex items-center justify-center">
+                        <i class="fas fa-home text-white text-lg"></i>
+                    </div>
+                    <div>
+                        <span class="text-lg font-bold bg-gradient-to-r from-violet-600 to-violet-800 bg-clip-text text-transparent">
+                            Carre Premium
+                        </span>
+                        <div class="text-xs text-gray-500 -mt-1">Menu</div>
+                    </div>
+                </div>
+                <button onclick="closeMobileMenu()" class="p-2 rounded-lg text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-all duration-300">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+
+            <!-- User Info (if authenticated) -->
+            @auth
+                <div class="mb-6 p-4 bg-gradient-to-r from-violet-50 to-violet-100 rounded-xl">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <img src="{{ auth()->user()->avatar ?? 'https://ui-avatars.com/api/?name=' . urlencode(auth()->user()->name) }}"
+                             alt="{{ auth()->user()->name }}"
+                             class="w-12 h-12 rounded-full border-2 border-violet-200">
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm font-semibold text-gray-900 truncate">{{ auth()->user()->name }}</p>
+                            <p class="text-xs text-gray-600 truncate">{{ auth()->user()->email }}</p>
+                        </div>
+                    </div>
+                    <button onclick="toggleMobileDropdown()" class="w-full flex items-center justify-between px-3 py-2 bg-white rounded-lg text-sm font-medium text-violet-600 hover:bg-violet-50 transition-all duration-200">
+                        <span>Mon compte</span>
+                        <i id="dropdown-icon" class="fas fa-chevron-down text-xs transition-transform duration-200"></i>
+                    </button>
+                    <div id="mobile-dropdown" class="mobile-dropdown-content mt-2 bg-white rounded-lg overflow-hidden">
+                        <a href="{{ route('profile') }}" class="flex items-center px-3 py-2.5 text-sm text-gray-700 hover:bg-violet-50 hover:text-violet-600 transition-all duration-200" onclick="closeMobileMenu()">
+                            <i class="fas fa-user mr-3 text-xs"></i>
+                            <span>Mon Profil</span>
+                        </a>
+                        <a href="{{ route('favorites.index') }}" class="flex items-center px-3 py-2.5 text-sm text-gray-700 hover:bg-violet-50 hover:text-violet-600 transition-all duration-200" onclick="closeMobileMenu()">
+                            <i class="fas fa-heart mr-3 text-xs"></i>
+                            <span>Mes Favoris</span>
+                        </a>
+                        @if(auth()->user()->role === 'admin')
+                            <a href="{{ route('admin.dashboard') }}" class="flex items-center px-3 py-2.5 text-sm text-gray-700 hover:bg-violet-50 hover:text-violet-600 transition-all duration-200" onclick="closeMobileMenu()">
+                                <i class="fas fa-tachometer-alt mr-3 text-xs"></i>
+                                <span>Administration</span>
+                            </a>
+                        @elseif(auth()->user()->role === 'agent')
+                            <a href="{{ route('agent.dashboard') }}" class="flex items-center px-3 py-2.5 text-sm text-gray-700 hover:bg-violet-50 hover:text-violet-600 transition-all duration-200" onclick="closeMobileMenu()">
+                                <i class="fas fa-tachometer-alt mr-3 text-xs"></i>
+                                <span>Tableau de bord</span>
+                            </a>
+                        @endif
+                        <hr class="my-1 border-gray-100">
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="flex items-center w-full text-left px-3 py-2.5 text-sm text-red-600 hover:bg-red-50 transition-all duration-200">
+                                <i class="fas fa-sign-out-alt mr-3 text-xs"></i>
+                                <span>Déconnexion</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            @endauth
+
+            <!-- Mobile Navigation Links -->
+            <nav class="space-y-2">
+                <a href="{{ route('home') }}" class="flex items-center px-4 py-3 rounded-lg text-gray-700 hover:bg-violet-50 hover:text-violet-600 transition-all duration-200 font-medium" onclick="closeMobileMenu()">
+                    <i class="fas fa-home mr-3 text-lg w-6"></i>
+                    <span>Accueil</span>
                 </a>
-                <a href="{{ route('properties.index') }}" class="flex flex-col items-center px-4 py-3 rounded-lg text-gray-700 hover:text-violet-600 hover:bg-violet-50 transition-all duration-300">
-                    <i class="fas fa-building text-lg mb-1"></i>
-                    <span class="text-xs">Propriétés</span>
+                <a href="{{ route('properties.index') }}" class="flex items-center px-4 py-3 rounded-lg text-gray-700 hover:bg-violet-50 hover:text-violet-600 transition-all duration-200 font-medium" onclick="closeMobileMenu()">
+                    <i class="fas fa-building mr-3 text-lg w-6"></i>
+                    <span>Propriétés</span>
                 </a>
-                <a href="{{ route('search.index') }}" class="flex flex-col items-center px-4 py-3 rounded-lg text-gray-700 hover:text-violet-600 hover:bg-violet-50 transition-all duration-300">
-                    <i class="fas fa-search text-lg mb-1"></i>
-                    <span class="text-xs">Recherche</span>
+                <a href="{{ route('search.index') }}" class="flex items-center px-4 py-3 rounded-lg text-gray-700 hover:bg-violet-50 hover:text-violet-600 transition-all duration-200 font-medium" onclick="closeMobileMenu()">
+                    <i class="fas fa-search mr-3 text-lg w-6"></i>
+                    <span>Recherche</span>
                 </a>
-                <a href="{{ route('about') }}" class="flex flex-col items-center px-4 py-3 rounded-lg text-gray-700 hover:text-violet-600 hover:bg-violet-50 transition-all duration-300">
-                    <i class="fas fa-info-circle text-lg mb-1"></i>
-                    <span class="text-xs">À propos</span>
+                <a href="{{ route('about') }}" class="flex items-center px-4 py-3 rounded-lg text-gray-700 hover:bg-violet-50 hover:text-violet-600 transition-all duration-200 font-medium" onclick="closeMobileMenu()">
+                    <i class="fas fa-info-circle mr-3 text-lg w-6"></i>
+                    <span>À propos</span>
                 </a>
-                <a href="{{ route('contact') }}" class="flex flex-col items-center px-4 py-3 rounded-lg text-gray-700 hover:text-violet-600 hover:bg-violet-50 transition-all duration-300">
-                    <i class="fas fa-envelope text-lg mb-1"></i>
-                    <span class="text-xs">Contact</span>
+                <a href="{{ route('contact') }}" class="flex items-center px-4 py-3 rounded-lg text-gray-700 hover:bg-violet-50 hover:text-violet-600 transition-all duration-200 font-medium" onclick="closeMobileMenu()">
+                    <i class="fas fa-envelope mr-3 text-lg w-6"></i>
+                    <span>Contact</span>
                 </a>
-                @guest
-                    <hr class="my-4 border-gray-200">
-                    <a href="{{ route('login') }}" class="flex items-center px-4 py-3 rounded-lg text-violet-600 hover:text-violet-700 hover:bg-violet-50 transition-all duration-300">
-                        <i class="fas fa-sign-in-alt mr-3 text-sm"></i>
+            </nav>
+
+            <!-- Mobile Auth Buttons (for guests) -->
+            @guest
+                <div class="mt-6 space-y-3 pt-6 border-t border-gray-200">
+                    <a href="{{ route('login') }}" class="flex items-center justify-center px-4 py-3 rounded-lg text-violet-600 bg-violet-50 hover:bg-violet-100 transition-all duration-300 font-medium" onclick="closeMobileMenu()">
+                        <i class="fas fa-sign-in-alt mr-2"></i>
                         <span>Connexion</span>
                     </a>
-                    <a href="{{ route('register') }}" class="flex items-center px-4 py-3 rounded-lg bg-gradient-to-r from-violet-600 to-violet-800 text-white hover:shadow-lg transition-all duration-300">
-                        <i class="fas fa-user-plus mr-3 text-sm"></i>
+                    <a href="{{ route('register') }}" class="flex items-center justify-center bg-gradient-to-r from-violet-600 to-violet-800 text-white px-4 py-3 rounded-lg hover:shadow-lg hover:shadow-violet-500/25 transition-all duration-300 font-medium" onclick="closeMobileMenu()">
+                        <i class="fas fa-user-plus mr-2"></i>
                         <span>Inscription</span>
                     </a>
-                @endguest
-            </div>
+                </div>
+            @endguest
         </div>
-    </nav>
+    </div>
 
     <!-- Main Content -->
     <main>
@@ -484,10 +623,67 @@
 
     <!-- Scripts -->
     <script>
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+        // Mobile menu functions
+        function toggleMobileMenu() {
             const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('hidden');
+            const overlay = document.getElementById('mobile-overlay');
+            const hamburger = document.getElementById('mobile-menu-button');
+            const body = document.body;
+            
+            const isOpen = mobileMenu.classList.contains('open');
+            
+            if (isOpen) {
+                closeMobileMenu();
+            } else {
+                // Open menu
+                mobileMenu.classList.add('open');
+                overlay.classList.remove('hidden');
+                overlay.classList.add('show');
+                hamburger.classList.add('active');
+                body.classList.add('mobile-menu-open');
+            }
+        }
+
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const overlay = document.getElementById('mobile-overlay');
+            const hamburger = document.getElementById('mobile-menu-button');
+            const body = document.body;
+            
+            mobileMenu.classList.remove('open');
+            overlay.classList.remove('show');
+            hamburger.classList.remove('active');
+            body.classList.remove('mobile-menu-open');
+            
+            // Hide overlay after transition
+            setTimeout(() => {
+                overlay.classList.add('hidden');
+            }, 300);
+        }
+
+        function toggleMobileDropdown() {
+            const dropdown = document.getElementById('mobile-dropdown');
+            const icon = document.getElementById('dropdown-icon');
+            
+            dropdown.classList.toggle('open');
+            icon.classList.toggle('rotate-180');
+        }
+
+        // Close mobile menu when clicking on navigation links
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileLinks = document.querySelectorAll('#mobile-menu a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    closeMobileMenu();
+                });
+            });
+        });
+
+        // Close mobile menu on window resize if screen becomes large
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 1024) {
+                closeMobileMenu();
+            }
         });
 
         // Smooth scrolling for anchor links
