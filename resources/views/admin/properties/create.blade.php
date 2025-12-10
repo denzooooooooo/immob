@@ -59,14 +59,11 @@
                             <label for="type" class="form-label-modern">Type de propriété *</label>
                             <select name="type" id="type" required class="form-control-modern">
                                 <option value="">Sélectionnez un type</option>
-                                <option value="apartment" {{ old('type') == 'apartment' ? 'selected' : '' }}>🏢 Appartement</option>
                                 <option value="house" {{ old('type') == 'house' ? 'selected' : '' }}>🏠 Maison</option>
-                                <option value="villa" {{ old('type') == 'villa' ? 'selected' : '' }}>🏰 Villa</option>
-                                <option value="studio" {{ old('type') == 'studio' ? 'selected' : '' }}>🛋️ Studio</option>
-                                <option value="office" {{ old('type') == 'office' ? 'selected' : '' }}>🏢 Bureau</option>
-                                <option value="shop" {{ old('type') == 'shop' ? 'selected' : '' }}>🏪 Commerce</option>
+                                <option value="apartment" {{ old('type') == 'apartment' ? 'selected' : '' }}>🏢 Appartement</option>
                                 <option value="land" {{ old('type') == 'land' ? 'selected' : '' }}>🌳 Terrain</option>
-                                <option value="warehouse" {{ old('type') == 'warehouse' ? 'selected' : '' }}>🏭 Entrepôt</option>
+                                <option value="commercial" {{ old('type') == 'commercial' ? 'selected' : '' }}>🏪 Commercial</option>
+                                <option value="hotel" {{ old('type') == 'hotel' ? 'selected' : '' }}>🏨 Hôtel</option>
                             </select>
                         </div>
                     </div>
@@ -78,7 +75,7 @@
                                 <option value="">Sélectionnez un statut</option>
                                 <option value="for_sale" {{ old('status') == 'for_sale' ? 'selected' : '' }}>💰 À vendre</option>
                                 <option value="for_rent" {{ old('status') == 'for_rent' ? 'selected' : '' }}>🏠 À louer</option>
-                                <option value="hotel" {{ old('status') == 'hotel' ? 'selected' : '' }}>🏨 Hôtel</option>
+                                <option value="hotel_room" {{ old('status') == 'hotel_room' ? 'selected' : '' }}>🏨 Chambre d'hôtel</option>
                             </select>
                         </div>
                     </div>

@@ -90,8 +90,8 @@ class PropertyController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'type' => 'required|in:apartment,house,villa,studio,office,shop,land,warehouse',
-            'status' => 'required|in:for_sale,for_rent,hotel',
+            'type' => 'required|in:house,apartment,land,commercial,hotel',
+            'status' => 'required|in:for_sale,for_rent,hotel_room',
             'price' => 'required|numeric|min:0',
             'currency' => 'required|in:XAF,EUR,USD',
             'surface_area' => 'required|numeric|min:1',
@@ -133,10 +133,11 @@ class PropertyController extends Controller
                 $property->media()->create([
                     'type' => 'image',
                     'path' => Storage::url($path),
-                    'filename' => $image->getClientOriginalName(),
-                    'size' => $image->getSize(),
+                    'title' => $image->getClientOriginalName(),
                     'order' => $index + 1,
                     'is_featured' => $index === 0, // Première image = featured
+                    'mime_type' => $image->getMimeType(),
+                    'size' => $image->getSize(),
                 ]);
             }
         }
@@ -193,8 +194,8 @@ class PropertyController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'type' => 'required|in:apartment,house,villa,studio,office,shop,land,warehouse',
-            'status' => 'required|in:for_sale,for_rent,hotel',
+            'type' => 'required|in:house,apartment,land,commercial,hotel',
+            'status' => 'required|in:for_sale,for_rent,hotel_room',
             'price' => 'required|numeric|min:0',
             'currency' => 'required|in:XAF,EUR,USD',
             'surface_area' => 'required|numeric|min:1',
@@ -235,10 +236,11 @@ class PropertyController extends Controller
                 $property->media()->create([
                     'type' => 'image',
                     'path' => Storage::url($path),
-                    'filename' => $image->getClientOriginalName(),
-                    'size' => $image->getSize(),
+                    'title' => $image->getClientOriginalName(),
                     'order' => $currentImagesCount + $index + 1,
                     'is_featured' => $currentImagesCount === 0 && $index === 0,
+                    'mime_type' => $image->getMimeType(),
+                    'size' => $image->getSize(),
                 ]);
             }
         }

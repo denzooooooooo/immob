@@ -85,8 +85,8 @@ class PropertyController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'type' => 'required|string|in:apartment,house,villa,studio,office,shop,land,warehouse',
-            'status' => 'required|string|in:for_sale,for_rent,hotel',
+            'type' => 'required|string|in:house,apartment,land,commercial,hotel',
+            'status' => 'required|string|in:for_sale,for_rent,hotel_room',
             'price' => 'required|numeric|min:0',
             'currency' => 'required|string|in:XAF,EUR,USD',
             'description' => 'required|string',
@@ -162,9 +162,12 @@ class PropertyController extends Controller
                     $property->media()->create([
                         'type' => 'image',
                         'path' => $path,
+                        'title' => $image->getClientOriginalName(),
                         'thumbnail_path' => null,
                         'order' => $index,
                         'is_featured' => $index === 0,
+                        'mime_type' => $image->getMimeType(),
+                        'size' => $image->getSize(),
                     ]);
                 }
             }
@@ -177,7 +180,10 @@ class PropertyController extends Controller
                     $property->media()->create([
                         'type' => 'video',
                         'path' => $path,
+                        'title' => $video->getClientOriginalName(),
                         'order' => $index,
+                        'mime_type' => $video->getMimeType(),
+                        'size' => $video->getSize(),
                     ]);
                 }
             }
@@ -213,8 +219,8 @@ class PropertyController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'type' => 'required|string|in:apartment,house,villa,studio,office,shop,land,warehouse',
-            'status' => 'required|string|in:for_sale,for_rent,hotel',
+            'type' => 'required|string|in:house,apartment,land,commercial,hotel',
+            'status' => 'required|string|in:for_sale,for_rent,hotel_room',
             'price' => 'required|numeric|min:0',
             'currency' => 'required|string|in:XAF,EUR,USD',
             'description' => 'required|string',
@@ -304,9 +310,12 @@ class PropertyController extends Controller
                     $property->media()->create([
                         'type' => 'image',
                         'path' => $path,
+                        'title' => $image->getClientOriginalName(),
                         'thumbnail_path' => null,
                         'order' => $currentMediaCount + $index,
                         'is_featured' => false,
+                        'mime_type' => $image->getMimeType(),
+                        'size' => $image->getSize(),
                     ]);
                 }
             }
@@ -320,7 +329,10 @@ class PropertyController extends Controller
                     $property->media()->create([
                         'type' => 'video',
                         'path' => $path,
+                        'title' => $video->getClientOriginalName(),
                         'order' => $currentMediaCount + $index,
+                        'mime_type' => $video->getMimeType(),
+                        'size' => $video->getSize(),
                     ]);
                 }
             }
