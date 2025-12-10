@@ -73,39 +73,47 @@ php artisan optimize:clear
 log_info "Exécution des migrations..."
 php artisan migrate --force
 
-# 8. Créer le lien symbolique pour le stockage
+# 8. Peupler la base de données (seeders)
+log_info "Peuplement de la base de données..."
+php artisan db:seed --force --class=CitySeeder
+php artisan db:seed --force --class=SiteSettingSeeder
+php artisan db:seed --force --class=UserSeeder
+php artisan db:seed --force --class=PropertySeeder
+log_success "Base de données peuplée avec succès!"
+
+# 9. Créer le lien symbolique pour le stockage
 log_info "Création du lien symbolique pour le stockage..."
 php artisan storage:link
 
-# 9. Optimiser pour la production
+# 10. Optimiser pour la production
 log_info "Optimisation pour la production..."
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache
 php artisan event:cache
 
-# 10. Préchauffer le cache
+# 11. Préchauffer le cache
 log_info "Préchauffage du cache..."
 php artisan cache:warmup 2>/dev/null || log_warning "Préchauffage du cache échoué"
 
-# 11. Nettoyer les fichiers temporaires
+# 12. Nettoyer les fichiers temporaires
 log_info "Nettoyage des fichiers temporaires..."
 php artisan app:cleanup --type=all --days=7 2>/dev/null || log_warning "Nettoyage échoué"
 
-# 12. Définir les permissions correctes
+# 13. Définir les permissions correctes
 log_info "Configuration des permissions..."
 chmod -R 755 storage bootstrap/cache
 chmod -R 775 storage/logs storage/framework/cache storage/framework/sessions storage/framework/views
 
-# 13. Vérifier l'état de l'application
+# 14. Vérifier l'état de l'application
 log_info "Vérification de l'état de l'application..."
 php artisan app:health-check --format=summary 2>/dev/null || log_warning "Vérification de santé échouée"
 
-# 14. Remettre l'application en ligne
+# 15. Remettre l'application en ligne
 log_info "Remise en ligne de l'application..."
 php artisan up
 
-# 15. Afficher le résumé
+# 16. Afficher le résumé
 echo ""
 log_success "🎉 Déploiement terminé avec succès!"
 echo ""
@@ -114,13 +122,14 @@ echo "  - Code mis à jour depuis Git"
 echo "  - Dépendances Composer installées"
 echo "  - Assets compilés"
 echo "  - Migrations exécutées"
+echo "  - Base de données peuplée (seeders)"
 echo "  - Caches optimisés"
 echo "  - Application en ligne"
 echo ""
 echo "🔗 Votre site est maintenant accessible à l'adresse configurée"
 echo ""
 
-# 16. Optionnel: Envoyer une notification
+# 17. Optionnel: Envoyer une notification
 if [ ! -z "$SLACK_WEBHOOK_URL" ]; then
     log_info "Envoi de notification Slack..."
     curl -X POST -H 'Content-type: application/json' \
