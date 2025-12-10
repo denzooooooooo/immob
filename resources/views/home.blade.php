@@ -50,7 +50,7 @@
             <div class="bg-white/70 backdrop-blur-lg rounded-2xl p-6 md:p-8 max-w-4xl mx-auto mb-8 shadow-2xl border border-white/30">
                 <form action="{{ route('search.index') }}" method="GET" class="grid grid-cols-1 md:grid-cols-4 gap-4">
                     <div class="relative">
-                        <select name="type" class="w-full px-4 py-3 rounded-lg bg-gray-50 text-gray-800 border border-gray-200 focus:ring-2 focus:ring-gabon-blue focus:border-gabon-blue transition-all duration-200 appearance-none">
+                        <select name="type" class="w-full px-4 py-3 rounded-lg bg-gray-50 text-gray-800 border border-gray-200 focus:ring-2 focus:ring-violet-600 focus:border-violet-600 transition-all duration-200 appearance-none">
                             <option value="">Type de bien</option>
                             <option value="house">Maison</option>
                             <option value="apartment">Appartement</option>
@@ -62,7 +62,7 @@
                     </div>
 
                     <div class="relative">
-                        <select name="city" class="w-full px-4 py-3 rounded-lg bg-gray-50 text-gray-800 border border-gray-200 focus:ring-2 focus:ring-gabon-blue focus:border-gabon-blue transition-all duration-200 appearance-none">
+                        <select name="city" class="w-full px-4 py-3 rounded-lg bg-gray-50 text-gray-800 border border-gray-200 focus:ring-2 focus:ring-violet-600 focus:border-violet-600 transition-all duration-200 appearance-none">
                             <option value="">Ville</option>
                             @foreach($cities as $city)
                                 <option value="{{ $city->slug }}">{{ $city->name }}</option>
@@ -72,7 +72,7 @@
                     </div>
 
                     <div class="relative">
-                        <select name="status" class="w-full px-4 py-3 rounded-lg bg-gray-50 text-gray-800 border border-gray-200 focus:ring-2 focus:ring-gabon-blue focus:border-gabon-blue transition-all duration-200 appearance-none">
+                        <select name="status" class="w-full px-4 py-3 rounded-lg bg-gray-50 text-gray-800 border border-gray-200 focus:ring-2 focus:ring-violet-600 focus:border-violet-600 transition-all duration-200 appearance-none">
                             <option value="">À vendre/louer</option>
                             <option value="for_sale">À vendre</option>
                             <option value="for_rent">À louer</option>
@@ -90,11 +90,11 @@
 
             <!-- CTA Buttons -->
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="{{ route('properties.index') }}" class="bg-gabon-blue text-white font-bold py-4 px-8 rounded-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center justify-center">
+                <a href="{{ route('properties.index') }}" class="bg-gradient-to-r from-violet-600 to-violet-800 text-white font-bold py-4 px-8 rounded-2xl hover:shadow-2xl hover:shadow-violet-500/50 transform hover:scale-105 transition-all duration-300 flex items-center justify-center">
                     <i class="fas fa-home mr-2"></i>
                     Voir toutes les propriétés
                 </a>
-                <a href="{{ route('register') }}" class="border-2 border-gabon-blue text-gabon-blue bg-white font-bold py-4 px-8 rounded-lg hover:bg-gabon-blue hover:text-white transform hover:scale-105 transition-all duration-200 flex items-center justify-center">
+                <a href="{{ route('register') }}" class="bg-white/95 backdrop-blur-sm text-violet-700 font-bold py-4 px-8 rounded-2xl hover:bg-white hover:shadow-2xl hover:shadow-white/50 transform hover:scale-105 transition-all duration-300 flex items-center justify-center border-2 border-white/50">
                     <i class="fas fa-user-plus mr-2"></i>
                     Rejoignez-nous
                 </a>
@@ -103,7 +103,7 @@
     </div>
 
     <!-- Scroll indicator -->
-    <div class="scroll-indicator absolute bottom-8 left-1/2 transform -translate-x-1/2 text-gray-600 animate-bounce cursor-pointer hover:text-gabon-blue transition-colors duration-200">
+    <div class="scroll-indicator absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/80 animate-bounce cursor-pointer hover:text-white transition-colors duration-200">
         <i class="fas fa-chevron-down text-2xl"></i>
     </div>
 </section>

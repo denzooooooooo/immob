@@ -140,88 +140,8 @@
     </div>
 </section>
 
-<!-- Team Section -->
-<section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                Notre
-                <span class="block bg-gradient-to-r from-violet-600 to-violet-800 bg-clip-text text-transparent">
-                    équipe
-                </span>
-            </h2>
-            <p class="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-                Des professionnels passionnés au service de vos projets immobiliers
-            </p>
-        </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
-            <div class="text-center group">
-                <div class="w-40 h-40 bg-gradient-to-br from-violet-600 to-violet-800 rounded-3xl mx-auto mb-8 flex items-center justify-center shadow-xl transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
-                    <i class="fas fa-user text-white text-5xl"></i>
-                </div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-4">Nephtali Nalik</h3>
-                <p class="text-violet-600 font-semibold text-lg mb-6">Fondateur</p>
-                <div class="flex justify-center space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-violet-600 transition-colors duration-300 transform hover:scale-125">
-                        <i class="fab fa-linkedin text-2xl"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-violet-600 transition-colors duration-300 transform hover:scale-125">
-                        <i class="fab fa-twitter text-2xl"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="text-center group">
-                <div class="w-40 h-40 bg-gradient-to-br from-violet-500 to-violet-700 rounded-3xl mx-auto mb-8 flex items-center justify-center shadow-xl transform group-hover:scale-110 group-hover:-rotate-6 transition-all duration-500">
-                    <i class="fas fa-user text-white text-5xl"></i>
-                </div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-4">Djedjed Alan</h3>
-                <p class="text-violet-600 font-semibold text-lg mb-6">Directeur des Opérations</p>
-                <div class="flex justify-center space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-violet-600 transition-colors duration-300 transform hover:scale-125">
-                        <i class="fab fa-linkedin text-2xl"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-violet-600 transition-colors duration-300 transform hover:scale-125">
-                        <i class="fab fa-twitter text-2xl"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="text-center group">
-                <div class="w-40 h-40 bg-gradient-to-br from-violet-400 to-violet-600 rounded-3xl mx-auto mb-8 flex items-center justify-center shadow-xl transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
-                    <i class="fas fa-user text-white text-5xl"></i>
-                </div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-4">Pierre Ndong</h3>
-                <p class="text-violet-600 font-semibold text-lg mb-6">Directeur Commercial</p>
-                <div class="flex justify-center space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-violet-600 transition-colors duration-300 transform hover:scale-125">
-                        <i class="fab fa-linkedin text-2xl"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-violet-600 transition-colors duration-300 transform hover:scale-125">
-                        <i class="fab fa-twitter text-2xl"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="text-center group">
-                <div class="w-40 h-40 bg-gradient-to-br from-violet-300 to-violet-500 rounded-3xl mx-auto mb-8 flex items-center justify-center shadow-xl transform group-hover:scale-110 group-hover:-rotate-6 transition-all duration-500">
-                    <i class="fas fa-user text-white text-5xl"></i>
-                </div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-4">Sophie Aubame</h3>
-                <p class="text-violet-600 font-semibold text-lg mb-6">Responsable Marketing</p>
-                <div class="flex justify-center space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-violet-600 transition-colors duration-300 transform hover:scale-125">
-                        <i class="fab fa-linkedin text-2xl"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-violet-600 transition-colors duration-300 transform hover:scale-125">
-                        <i class="fab fa-twitter text-2xl"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+        
 
 <!-- CTA Section -->
 <section class="py-20 bg-gradient-to-br from-violet-600 to-violet-800 text-white relative overflow-hidden">
