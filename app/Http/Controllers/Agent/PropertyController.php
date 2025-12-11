@@ -125,20 +125,15 @@ class PropertyController extends Controller
         
         $property = Property::create($validated);
         
-        // Upload des images
+        // Upload des images avec Spatie Media Library
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $index => $image) {
-                $path = $image->store('properties', 'public');
-                
-                $property->media()->create([
-                    'type' => 'image',
-                    'path' => 'storage/' . $path,
-                    'title' => $image->getClientOriginalName(),
-                    'order' => $index + 1,
-                    'is_featured' => $index === 0, // Première image = featured
-                    'mime_type' => $image->getMimeType(),
-                    'size' => $image->getSize(),
-                ]);
+                $property->addMedia($image)
+                    ->withCustomProperties([
+                        'order' => $index + 1,
+                        'is_featured' => $index === 0
+                    ])
+                    ->toMediaCollection('images');
             }
         }
         
@@ -226,22 +221,17 @@ class PropertyController extends Controller
         
         $property->update($validated);
         
-        // Upload des nouvelles images
+        // Upload des nouvelles images avec Spatie Media Library
         if ($request->hasFile('images')) {
-            $currentImagesCount = $property->media()->where('type', 'image')->count();
+            $currentImagesCount = $property->getMedia('images')->count();
             
             foreach ($request->file('images') as $index => $image) {
-                $path = $image->store('properties', 'public');
-                
-                $property->media()->create([
-                    'type' => 'image',
-                    'path' => 'storage/' . $path,
-                    'title' => $image->getClientOriginalName(),
-                    'order' => $currentImagesCount + $index + 1,
-                    'is_featured' => $currentImagesCount === 0 && $index === 0,
-                    'mime_type' => $image->getMimeType(),
-                    'size' => $image->getSize(),
-                ]);
+                $property->addMedia($image)
+                    ->withCustomProperties([
+                        'order' => $currentImagesCount + $index + 1,
+                        'is_featured' => $currentImagesCount === 0 && $index === 0
+                    ])
+                    ->toMediaCollection('images');
             }
         }
         
@@ -256,12 +246,9 @@ class PropertyController extends Controller
             abort(403);
         }
         
-        // Supprimer les images
-        foreach ($property->media as $media) {
-            if ($media->path) {
-                Storage::disk('public')->delete(str_replace('/storage/', '', $media->path));
-            }
-        }
+        // Supprimer les médias Spatie
+        $property->clearMediaCollection('images');
+        $property->clearMediaCollection('videos');
         
         $property->delete();
         
@@ -326,9 +313,17 @@ class PropertyController extends Controller
         $newProperty->views_count = 0;
         $newProperty->save();
         
-        // Dupliquer les médias
-        foreach ($property->media as $media) {
-            $newProperty->media()->create($media->toArray());
+        // Dupliquer les médias avec Spatie
+        foreach ($property->getMedia('images') as $media) {
+            $newProperty->addMediaFromDisk($media->getPath(), $media->disk)
+                ->withCustomProperties($media->custom_properties)
+                ->toMediaCollection('images');
+        }
+        
+        foreach ($property->getMedia('videos') as $media) {
+            $newProperty->addMediaFromDisk($media->getPath(), $media->disk)
+                ->withCustomProperties($media->custom_properties)
+                ->toMediaCollection('videos');
         }
         
         // Mettre à jour le compteur d'abonnement
@@ -345,19 +340,16 @@ class PropertyController extends Controller
 
     public function deleteMedia($mediaId)
     {
-        $media = \App\Models\PropertyMedia::findOrFail($mediaId);
+        // Trouver le média via Spatie
+        $media = \Spatie\MediaLibrary\MediaCollections\Models\Media::findOrFail($mediaId);
         
         // Vérifier que le média appartient à une propriété de l'agent
-        if ($media->property->user_id !== Auth::id()) {
+        $property = Property::find($media->model_id);
+        if (!$property || $property->user_id !== Auth::id()) {
             abort(403);
         }
         
-        // Supprimer le fichier
-        if ($media->path) {
-            Storage::disk('public')->delete(str_replace('/storage/', '', $media->path));
-        }
-        
-        // Supprimer l'enregistrement
+        // Supprimer le média (Spatie gère automatiquement la suppression du fichier)
         $media->delete();
         
         return response()->json([
